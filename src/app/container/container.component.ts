@@ -19,60 +19,40 @@ export class ContainerComponent implements OnInit {
       title: 'Dashboard',
       icon: 'dashboard',
       link: '/dashboard',
-      roles: [RoleEnum.Admin],
-      children: [
-        {
-          title: 'Nạp tiền',
-          icon: 'cash',
-          link: '/dashboard/pricing',
-          roles: [RoleEnum.Admin]
-        },
-        {
-          title: 'Lịch sử giao dịch',
-          icon: 'history',
-          link: '/dashboard/history',
-          roles: [RoleEnum.Admin]
-        },
-        {
-          title: 'Liên hệ',
-          icon: 'history',
-          link: '/dashboard/contact',
-          roles: [RoleEnum.Admin]
-        }
-      ]
+      roles: [RoleEnum.Admin, RoleEnum.Student, RoleEnum.MarketingCoordinator, RoleEnum.Guest, RoleEnum.MarketingManager],
     },
     {
-      title: 'Đơn hàng',
+      title: 'Contribution',
       icon: 'shopping-cart',
-      roles: [RoleEnum.Admin],
+      roles: [RoleEnum.Student, RoleEnum.MarketingCoordinator],
       children: [
         {
-          title: 'Danh sách đơn',
+          title: 'Contribution List',
           icon: 'dashboard',
-          link: '/job/index',
-          roles: [RoleEnum.Admin]
+          link: '/contribution/index',
+          roles: [RoleEnum.Student, RoleEnum.MarketingCoordinator]
         },
         {
-          title: 'Đặt đơn',
+          title: 'Create Contribution',
           icon: 'dashboard',
-          link: '/job/create',
-          roles: [RoleEnum.Admin]
+          link: '/contribution/create',
+          roles: [RoleEnum.Student]
         }
       ],
     },
     {
-      title: 'Tài khoản',
+      title: 'Account',
       icon: 'usergroup-add',
       roles: [RoleEnum.Admin],
       children: [
         {
-          title: 'Danh sách tài khoản',
+          title: 'Account List',
           icon: 'dashboard',
           link: '/account/index',
           roles: [RoleEnum.Admin],
         },
         {
-          title: 'Thêm tài khoản mới',
+          title: 'Create Account',
           icon: 'dashboard',
           link: '/account/create',
           roles: [RoleEnum.Admin],
@@ -80,42 +60,43 @@ export class ContainerComponent implements OnInit {
       ],
     },
     {
-      title: 'Sản phẩm',
+      title: 'Contribute Session',
       icon: 'skin',
-      roles: [RoleEnum.Admin],
+      roles: [RoleEnum.Admin, RoleEnum.MarketingManager],
       children: [
         {
-          title: 'Danh sách sản phẩm',
+          title: 'Contribute Session List',
           icon: 'dashboard',
-          link: '/product/index',
-          roles: [RoleEnum.Admin],
+          link: '/contribute-session/index',
+          roles: [RoleEnum.Admin, RoleEnum.MarketingManager],
         },
         {
-          title: 'Thêm sản phẩm',
+          title: 'Create Contribution Session',
           icon: 'dashboard',
-          link: '/product/create',
-          roles: [RoleEnum.Admin],
+          link: '/contribute-session/create',
+          roles: [RoleEnum.Admin, RoleEnum.MarketingManager],
         }
       ],
     },
     {
-      title: 'Proxy',
-      icon: 'dashboard',
-      link: '/proxy',
+      title: 'Faculty',
+      icon: 'skin',
       roles: [RoleEnum.Admin],
+      children: [
+        {
+          title: 'Faculty List',
+          icon: 'dashboard',
+          link: '/faculty/index',
+          roles: [RoleEnum.Admin],
+        },
+        {
+          title: 'Create Faculty',
+          icon: 'dashboard',
+          link: '/faculty/create',
+          roles: [RoleEnum.Admin],
+        }
+      ],
     },
-    {
-      title: 'User',
-      icon: 'dashboard',
-      link: '/user',
-      roles: [RoleEnum.Admin],
-    },
-    {
-      title: 'Profile',
-      icon: 'dashboard',
-      link: '/profile',
-      roles: [RoleEnum.Admin],
-    }
   ];
   user$: Observable<AuthzLoginResponse>;
   menus$: Observable<MenuItem[]>;
