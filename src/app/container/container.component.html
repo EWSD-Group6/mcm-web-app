@@ -1,0 +1,72 @@
+<nz-layout class="app-layout">
+  <nz-sider [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null"
+            class="menu-sidebar"
+            nzBreakpoint="md"
+            nzCollapsible
+            nzWidth="256px">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img alt="logo" src="assets/icons/icon-72x72.png">
+        <h1>Magazine Collaboration</h1>
+      </a>
+    </div>
+    <ul nz-menu nzMode="inline" nzTheme="dark">
+      <ng-container *ngFor="let item of menus$ | async">
+        <ng-container *ngIf="item.children">
+          <li [nzIcon]="item.icon" [nzTitle]="item.title" nz-submenu>
+            <ul>
+              <li *ngFor="let child of item.children" [nzMatchRouter]="true" nz-menu-item>
+                <a [routerLink]="child.link">{{child.title}}</a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="!item.children">
+          <li [nzMatchRouter]="true" nz-menu-item>
+            <i [nzType]="item.icon" nz-icon></i>
+            <a [routerLink]="item.link">{{item.title}}</a>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span (click)="isCollapsed = !isCollapsed" class="header-trigger">
+            <i [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+               class="trigger"
+               nz-icon
+            ></i>
+        </span>
+        <ul class="header-menu" nz-menu nzMode="horizontal" nzTheme="light" style="line-height: 64px; float: right">
+          <li *ngIf="user$ | async as user" nz-menu-item>
+            <a [nzDropdownMenu]="menu" nz-dropdown>
+              <nz-avatar nz-icon="user" nzSrc=""></nz-avatar>
+              {{user.email}}
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li (click)="logout()" nz-menu-item>
+                  Logout
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </li>
+
+        </ul>
+      </div>
+
+    </nz-header>
+    <nz-page-header>
+      <nz-breadcrumb nz-page-header-breadcrumb nzAutoGenerate>
+      </nz-breadcrumb>
+    </nz-page-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
