@@ -24,11 +24,12 @@ import {NzMessageModule} from 'ng-zorro-antd/message';
 import {NzFormModule} from 'ng-zorro-antd/form';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NzTableModule} from 'ng-zorro-antd/table';
+import { ContributionCommentBoxComponent } from './contribution-comment-box/contribution-comment-box.component';
 
 
 
 @NgModule({
-  declarations: [ContributionIndexComponent, CreateComponent, ContributionDetailComponent, ContributionEditComponent],
+  declarations: [ContributionIndexComponent, CreateComponent, ContributionDetailComponent, ContributionEditComponent, ContributionCommentBoxComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([

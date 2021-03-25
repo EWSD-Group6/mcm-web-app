@@ -1,22 +1,24 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ID } from '@datorama/akita';
-import {switchMap, take, tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {ID} from '@datorama/akita';
+import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
 import {Contribution, createContribution} from './contribution.model';
-import { ContributionStore } from './contribution.store';
-import {ContributionsService} from "../../api";
-import {ContributionQuery} from "./contribution.query";
+import {ContributionStore} from './contribution.store';
+import {ArticlesApiService, ContributionsApiService} from '../../api';
+import {ContributionQuery} from './contribution.query';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class ContributionService {
 
   constructor(private contributionStore: ContributionStore,
-              private contributionApiService: ContributionsService,
-              private query: ContributionQuery) {
+              private contributionApiService: ContributionsApiService,
+              private query: ContributionQuery,
+              private articleApiService: ArticlesApiService) {
   }
 
 
-  get() {
+  get(): Observable<any> {
     this.contributionStore.setLoading(true);
     return this.query.select(x => x.query).pipe(
       take(1),
@@ -31,12 +33,12 @@ export class ContributionService {
       tap(x => this.contributionStore.set(x.data.map(item => createContribution(item)))),
       tap(x => this.contributionStore.update({
         paginate: {
-          total: x.commonPaginateResponse.,
+          total: x.total,
           pageIndex: x.currentPage + 1,
           pageSize: x.perPage,
         }
       })),
-      finalize(() => this.productStore.setLoading(false)),
+      finalize(() => this.contributionStore.setLoading(false)),
     );
   }
 
@@ -52,4 +54,51 @@ export class ContributionService {
     this.contributionStore.remove(id);
   }
 
+  updateQuery(param: {
+    contributionSessionId?: number;
+    facultyId?: number;
+    limit?: number;
+    page?: number;
+    status?: 'accepted' | 'rejected' | 'reviewing';
+    studentId?: number;
+  }): void {
+    this.contributionStore.update(x => ({
+      query: {
+        ...x.query,
+        ...param,
+      }
+    }));
+    this.get().subscribe();
+  }
+
+  getById(id: number): Observable<Contribution> {
+    const entity = this.query.getEntity(id);
+    if (entity) {
+      return of(entity);
+    }
+    return this.contributionApiService.contributionsIdGet(id).pipe(
+      map(x => createContribution(x)),
+      tap(x => this.contributionStore.add(x)),
+    );
+  }
+
+  setActive(id): void {
+    this.contributionStore.setActive(id);
+  }
+
+  getImages(contributionId): void {
+    this.contributionApiService.contributionsIdImagesGet(contributionId).pipe(
+      tap(x => this.contributionStore.update({
+        images: x
+      }))
+    ).subscribe();
+  }
+
+  getArticle(articleId): void {
+    this.articleApiService.articlesIdGet(articleId).pipe(
+      tap(x => this.contributionStore.update({
+        article: x
+      }))
+    ).subscribe();
+  }
 }

@@ -1,9 +1,17 @@
+import {ContributionUserRes} from '../../api';
+
 export interface Contribution {
-  id: number | string;
+  description?: string;
+  articleId?: number;
+  title?: string;
+  contributeSessionId?: number;
+  createdAt?: string;
+  id?: number;
+  status?: string;
+  updatedAt?: string;
+  user?: ContributionUserRes;
 }
 
-export function createContribution(params: Partial<Contribution>) {
-  return {
-    ...params,
-  } as Contribution;
-}
+export const createContribution = (params: Partial<Contribution>) => ({
+  ...params,
+} as Contribution);

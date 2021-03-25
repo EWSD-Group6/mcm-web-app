@@ -27,9 +27,12 @@ export class ContributionIndexComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.service.get().subscribe();
   }
 
-  onQueryParamsChange($event: NzTableQueryParams) {
-
+  onQueryParamsChange($event: NzTableQueryParams): void {
+    this.service.updateQuery({
+      page: $event.pageIndex - 1
+    });
   }
 }

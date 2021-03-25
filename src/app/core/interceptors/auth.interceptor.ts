@@ -17,7 +17,8 @@ export class AuthInterceptor implements HttpInterceptor {
       map(x => {
         if (!req.headers.get('Bypass-Interceptor')) {
           return req.clone({
-            headers: req.headers.append('Authorization', `Bearer ${x}`)
+            headers: req.headers.delete('Authorization')
+              .append('Authorization', `Bearer ${x}`)
           });
         } else {
           return req;

@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {filter, finalize, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
-import {AuthService, AuthzLoginResponse} from '../api';
+import {AuthApiService, AuthzLoginResponse} from '../api';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AuthenticationService {
   currentUser$: BehaviorSubject<AuthzLoginResponse | null> = new BehaviorSubject(null);
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private authApiService: AuthService,
+  constructor(private authApiService: AuthApiService,
               private router: Router,
               private nzNotificationService: NzNotificationService) {
     this.token$.next(localStorage.getItem('token'));

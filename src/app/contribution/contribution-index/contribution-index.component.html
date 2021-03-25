@@ -15,6 +15,7 @@
     <th>#</th>
     <th>Id</th>
     <th>Session</th>
+    <th>User</th>
     <th>Name</th>
     <th>Description</th>
     <th>Status</th>
@@ -26,12 +27,18 @@
   <tbody>
   <tr *ngFor="let item of table.data; index as i">
     <td>{{i + 1}}</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>{{item.id}}</td>
+    <td>{{item.contributeSessionId}}</td>
+    <td>{{item.user.name}}</td>
+    <td>{{item.title}}</td>
+    <td>{{item.description}}</td>
+    <td>{{item.status}}</td>
+    <td>{{item.createdAt}}</td>
+    <td>{{item.updatedAt}}</td>
+    <td>
+      <button nz-button>Delete</button>
+      <a nz-button [routerLink]="['/contribution', item.id]">View</a>
+    </td>
   </tr>
   </tbody>
 </nz-table>

@@ -25,6 +25,7 @@ import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 import {NzPageHeaderModule} from 'ng-zorro-antd/page-header';
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 import {NzGridModule} from "ng-zorro-antd/grid";
+import {AuthenticationService} from './auth/authentication.service';
 
 registerLocaleData(en);
 
@@ -35,13 +36,14 @@ registerLocaleData(en);
   ],
     imports: [
         BrowserModule,
-        ApiModule.forRoot(() => {
-            const config = new Configuration();
-            config.basePath = environment.baseApi;
-            return config;
-        }),
         CoreModule,
         AuthModule,
+      ApiModule.forRoot(() => {
+        const config = new Configuration();
+        config.basePath = environment.baseApi;
+        config.credentials.ApiKeyAuth = `default`;
+        return config;
+      }),
         AppRoutingModule,
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
         FormsModule,

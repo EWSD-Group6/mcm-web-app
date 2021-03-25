@@ -1,0 +1,22 @@
+<nz-comment *ngFor="let comment of comment$ | async"
+            [nzAuthor]="comment.user.name"
+            [nzDatetime]="comment.createdAt"
+>
+  <nz-comment-content>
+    <p>
+     {{comment.content}}
+    </p>
+  </nz-comment-content>
+</nz-comment>
+<nz-comment>
+  <nz-comment-content>
+    <nz-form-item>
+      <textarea nz-input rows="4"></textarea>
+    </nz-form-item>
+    <nz-form-item style="margin-top: 10px">
+      <button nz-button nzType="primary">
+        Add Comment
+      </button>
+    </nz-form-item>
+  </nz-comment-content>
+</nz-comment>

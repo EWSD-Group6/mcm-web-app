@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { Contribution } from './contribution.model';
+import {ArticleArticleRes, ContributionImageRes} from '../../api';
 
 export interface ContributionState extends EntityState<Contribution> {
   paginate: {
@@ -16,6 +17,8 @@ export interface ContributionState extends EntityState<Contribution> {
     status?: 'accepted' | 'rejected' | 'reviewing';
     studentId?: number;
   };
+  images: ContributionImageRes[];
+  article: ArticleArticleRes;
 }
 
 @Injectable({ providedIn: 'root' })
