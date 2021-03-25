@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 import { CommentCommentRes } from './commentCommentRes';
-import { CommonPaginateResponse } from './commonPaginateResponse';
+import { CommonCursorResponse } from './commonCursorResponse';
 
 
 export interface InlineResponse200 { 
-    commonPaginateResponse?: CommonPaginateResponse;
-    data?: CommentCommentRes;
+    commonCursorResponse?: CommonCursorResponse;
+    data?: Array<CommentCommentRes>;
 }

@@ -20,6 +20,7 @@ import { Observable }                                        from 'rxjs/Observab
 
 import { ContributionContributionCreateReq } from '../model/contributionContributionCreateReq';
 import { ContributionContributionRes } from '../model/contributionContributionRes';
+import { ContributionContributionStatusReq } from '../model/contributionContributionStatusReq';
 import { ContributionContributionUpdateReq } from '../model/contributionContributionUpdateReq';
 import { ContributionImageRes } from '../model/contributionImageRes';
 import { InlineResponse2002 } from '../model/inlineResponse2002';
@@ -323,6 +324,63 @@ export class ContributionsService {
         }
 
         return this.httpClient.put<ContributionContributionRes>(`${this.basePath}/contributions/${encodeURIComponent(String(id))}`,
+            body,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Update contribution status
+     * Update contribution status
+     * @param id ID
+     * @param body update
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public contributionsIdStatusPost(id: number, body: ContributionContributionStatusReq, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public contributionsIdStatusPost(id: number, body: ContributionContributionStatusReq, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public contributionsIdStatusPost(id: number, body: ContributionContributionStatusReq, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public contributionsIdStatusPost(id: number, body: ContributionContributionStatusReq, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling contributionsIdStatusPost.');
+        }
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling contributionsIdStatusPost.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (ApiKeyAuth) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<any>(`${this.basePath}/contributions/${encodeURIComponent(String(id))}/status`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,

@@ -24,6 +24,7 @@ import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
 import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 import {NzPageHeaderModule} from 'ng-zorro-antd/page-header';
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
+import {NzGridModule} from "ng-zorro-antd/grid";
 
 registerLocaleData(en);
 
@@ -32,29 +33,30 @@ registerLocaleData(en);
     AppComponent,
     ContainerComponent
   ],
-  imports: [
-    BrowserModule,
-    ApiModule.forRoot(() => {
-      const config = new Configuration();
-      config.basePath = environment.baseApi;
-      return config;
-    }),
-    CoreModule,
-    AuthModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    IconsProviderModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzPageHeaderModule,
-    NzBreadCrumbModule,
-    NzDropDownModule,
-    NzAvatarModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot()
-  ],
+    imports: [
+        BrowserModule,
+        ApiModule.forRoot(() => {
+            const config = new Configuration();
+            config.basePath = environment.baseApi;
+            return config;
+        }),
+        CoreModule,
+        AuthModule,
+        AppRoutingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        IconsProviderModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzPageHeaderModule,
+        NzBreadCrumbModule,
+        NzDropDownModule,
+        NzAvatarModule,
+        environment.production ? [] : AkitaNgDevtools.forRoot(),
+        NzGridModule
+    ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},
     ...httpInterceptorProviders,

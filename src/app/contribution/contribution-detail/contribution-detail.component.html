@@ -1,0 +1,161 @@
+<nz-row nzGutter="16" style="height: 100%">
+  <nz-col nzSpan="24">
+    <nz-tabset [nzTabBarExtraContent]="extraTemplate" style="height: 100%" [nzAnimated]="false">
+      <nz-tab nzTitle="Document" nzForceRender>
+        <nz-tabset [nzTabPosition]="'left'" style="height: 100%" [nzAnimated]="false">
+          <nz-tab nzTitle="v1">
+            <div style="height: 100%">
+              <ng2-pdfjs-viewer
+                pdfSrc="https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf"
+              ></ng2-pdfjs-viewer>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="v2">
+            <div style="height: 100vh">
+              <ng2-pdfjs-viewer
+                pdfSrc="https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf"
+              ></ng2-pdfjs-viewer>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+      </nz-tab>
+      <nz-tab nzTitle="Image">
+        <nz-row nzGutter="16">
+
+          <div nz-col nzXs="12" nzLg="6">
+            <img
+              nz-image
+              width="100%"
+              nzSrc="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              alt=""
+            />
+          </div>
+          <div nz-col nzXs="12" nzLg="6">
+            <img
+              nz-image
+              width="100%"
+              nzSrc="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              alt=""
+            />
+          </div>
+          <div nz-col nzXs="12" nzLg="6">
+            <img
+              nz-image
+              width="100%"
+              nzSrc="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              alt=""
+            />
+          </div>
+          <div nz-col nzXs="12" nzLg="6">
+            <img
+              nz-image
+              width="100%"
+              nzSrc="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              alt=""
+            />
+          </div>
+
+        </nz-row>
+      </nz-tab>
+    </nz-tabset>
+  </nz-col>
+</nz-row>
+<ng-template #extraTemplate>
+  <button nz-button nzType="primary" (click)="visible = !visible">Comments</button>
+</ng-template>
+
+<nz-drawer [nzClosable]="true"
+           [nzVisible]="visible"
+           nzWidth='50vw'
+           nzPlacement="right"
+           nzTitle="Comments"
+           (nzOnClose)="visible = false"
+>
+  <ng-container *nzDrawerContent>
+
+    <nz-comment nzAuthor="Han Solo">
+      <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <nz-comment-content>
+        <p>
+          We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people
+          create their product prototypes beautifully and efficiently.
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>Reply to</nz-comment-action>
+    </nz-comment>
+    <nz-comment nzAuthor="Han Solo">
+      <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <nz-comment-content>
+        <p>
+          We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people
+          create their product prototypes beautifully and efficiently.
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>Reply to</nz-comment-action>
+    </nz-comment>
+    <nz-comment nzAuthor="Han Solo">
+      <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <nz-comment-content>
+        <p>
+          We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people
+          create their product prototypes beautifully and efficiently.
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>Reply to</nz-comment-action>
+    </nz-comment>
+    <nz-comment nzAuthor="Han Solo">
+      <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <nz-comment-content>
+        <p>
+          We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people
+          create their product prototypes beautifully and efficiently.
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>Reply to</nz-comment-action>
+    </nz-comment>
+    <nz-comment nzAuthor="Han Solo">
+      <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <nz-comment-content>
+        <p>
+          We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people
+          create their product prototypes beautifully and efficiently.
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>Reply to</nz-comment-action>
+    </nz-comment>
+    <nz-comment nzAuthor="Han Solo">
+      <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <nz-comment-content>
+        <p>
+          We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people
+          create their product prototypes beautifully and efficiently.
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>Reply to</nz-comment-action>
+    </nz-comment>
+    <nz-comment nzAuthor="Han Solo">
+      <nz-avatar nz-comment-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <nz-comment-content>
+        <p>
+          We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people
+          create their product prototypes beautifully and efficiently.
+        </p>
+      </nz-comment-content>
+      <nz-comment-action>Reply to</nz-comment-action>
+    </nz-comment>
+    <nz-comment>
+      <nz-avatar nz-comment-avatar nzIcon="user"></nz-avatar>
+      <nz-comment-content>
+        <nz-form-item>
+          <textarea nz-input rows="4"></textarea>
+        </nz-form-item>
+        <nz-form-item style="margin-top: 10px">
+          <button nz-button nzType="primary">
+            Add Comment
+          </button>
+        </nz-form-item>
+      </nz-comment-content>
+    </nz-comment>
+  </ng-container>
+</nz-drawer>
+

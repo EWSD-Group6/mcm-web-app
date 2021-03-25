@@ -44,7 +44,6 @@
           <li *ngIf="user$ | async as user" nz-menu-item>
             <a [nzDropdownMenu]="menu" nz-dropdown>
               <nz-avatar nz-icon="user" nzSrc=""></nz-avatar>
-              {{user.email}}
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu nzSelectable>

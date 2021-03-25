@@ -9,11 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { CommonPaginateResponse } from './commonPaginateResponse';
-import { ContributesessionSessionRes } from './contributesessionSessionRes';
 
 
-export interface InlineResponse2001 { 
-    commonPaginateResponse?: CommonPaginateResponse;
-    data?: Array<ContributesessionSessionRes>;
+export interface CommonCursorResponse { 
+    data?: any;
+    next?: string;
 }

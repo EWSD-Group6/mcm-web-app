@@ -15,5 +15,5 @@ import { UserUserResponse } from './userUserResponse';
 
 export interface InlineResponse2004 { 
     commonPaginateResponse?: CommonPaginateResponse;
-    data?: UserUserResponse;
+    data?: Array<UserUserResponse>;
 }

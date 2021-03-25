@@ -15,5 +15,5 @@ import { ContributionContributionRes } from './contributionContributionRes';
 
 export interface InlineResponse2002 { 
     commonPaginateResponse?: CommonPaginateResponse;
-    data?: ContributionContributionRes;
+    data?: Array<ContributionContributionRes>;
 }

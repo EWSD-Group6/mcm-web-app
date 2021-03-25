@@ -15,5 +15,5 @@ import { FacultyFacultyResponse } from './facultyFacultyResponse';
 
 export interface InlineResponse2003 { 
     commonPaginateResponse?: CommonPaginateResponse;
-    data?: FacultyFacultyResponse;
+    data?: Array<FacultyFacultyResponse>;
 }

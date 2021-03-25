@@ -15,25 +15,25 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
         data: {
-          breadcrumb: 'dashboard'
+          breadcrumb: 'Dashboard'
         }
       },
       {
         path: 'faculty', loadChildren: () => import('./faculty/faculty.module').then(m => m.FacultyModule), data: {
-          breadcrumb: 'faculty'
+          breadcrumb: 'Faculty'
         }
       },
       {
         path: 'contribute-session', loadChildren: () => import('./contribute-session/contribute-session.module')
           .then(m => m.ContributeSessionModule), data: {
-          breadcrumb: 'contribute-session'
+          breadcrumb: 'Contribute Session'
         }
       },
       {
         path: 'contribution',
         loadChildren: () => import('./contribution/contribution.module').then(m => m.ContributionModule),
         data: {
-          breadcrumb: 'contribution'
+          breadcrumb: 'Contribution'
         }
       },
       {
