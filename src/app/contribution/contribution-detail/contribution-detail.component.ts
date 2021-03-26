@@ -36,10 +36,6 @@ export class ContributionDetailComponent implements OnInit, OnDestroy {
     this.images$ = this.query.select(x => x.images);
     this.article$ = this.query.select(x => x.article).pipe(
       filter(x => !!x),
-      map(x => {
-        x.versions.forEach(version => version.linkPdfCdn = encodeURIComponent(version.linkPdfCdn));
-        return x;
-      })
     );
   }
 

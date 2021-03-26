@@ -1,14 +1,42 @@
-<nz-row nzGutter="16" style="height: 100%">
-  <nz-col nzSpan="24">
-    <nz-tabset [nzTabBarExtraContent]="extraTemplate" style="height: 100%" [nzAnimated]="false">
+<nz-row nzGutter="16">
+  <nz-col nzSpan="6">
+    <nz-descriptions [nzTitle]="contribution?.title" [nzColumn]="1" nzBordered nzSize="default">
+      <nz-descriptions-item nzTitle="Description">{{contribution.description}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Author Name">{{contribution.user.name}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Author Email">{{contribution.user.email}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Faculty">{{contribution.user.facultyId}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Contribute Session">{{contribution.contributeSessionId}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Create Time">{{contribution.createdAt}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Update Time">{{contribution.updatedAt}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Status">
+        <nz-badge *ngIf="contribution.status === 'reviewing'" nzStatus="processing" nzText="Reviewing"></nz-badge>
+        <nz-badge *ngIf="contribution.status === 'accepted'" nzStatus="success" nzText="Accepted"></nz-badge>
+        <nz-badge *ngIf="contribution.status === 'rejected'" nzStatus="error" nzText="Rejected"></nz-badge>
+      </nz-descriptions-item>
+    </nz-descriptions>
+  </nz-col>
+  <nz-col nzSpan="18">
+    <nz-tabset  [nzTabBarExtraContent]="extraTemplate" [nzAnimated]="false">
       <nz-tab nzTitle="Document" nzForceRender>
-        <nz-tabset *ngIf="article$ | async" [nzTabPosition]="'left'" style="height: 100%" [nzAnimated]="false">
-          <nz-tab *ngFor="let version of (article$ | async).versions" [nzTitle]="version.id">
-            <div style="height: 100%">
-              <ng2-pdfjs-viewer *ngIf="version.linkPdfCdn"
+        <nz-tabset *ngIf="(article$ | async) as article" [nzTabPosition]="'left'" [nzAnimated]="false">
+          <nz-tab *ngFor="let version of article.versions" [nzTitle]="version.id">
+            <div *ngIf="version.linkPdfCdn" style="height: 100vh">
+              <ng2-pdfjs-viewer
                 [pdfSrc]="version.linkPdfCdn"
               ></ng2-pdfjs-viewer>
             </div>
+            <nz-empty
+              *ngIf="!version.linkPdfCdn"
+              [nzNotFoundContent]="contentTpl"
+              [nzNotFoundFooter]="footerTpl"
+            >
+              <ng-template #contentTpl>
+                <span>Online document preview is not ready, please comeback later or download original to view offline</span>
+              </ng-template>
+              <ng-template #footerTpl>
+                <button nz-button nzType="primary">Download Original</button>
+              </ng-template>
+            </nz-empty>
           </nz-tab>
         </nz-tabset>
       </nz-tab>
@@ -28,6 +56,7 @@
   </nz-col>
 </nz-row>
 <ng-template #extraTemplate>
+  <button nz-button nzType="dashed">Accept Contribution</button>
   <button nz-button nzType="primary" (click)="commentVisible = !commentVisible">Comments</button>
 </ng-template>
 

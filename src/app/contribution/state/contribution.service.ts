@@ -96,9 +96,16 @@ export class ContributionService {
 
   getArticle(articleId): void {
     this.articleApiService.articlesIdGet(articleId).pipe(
-      tap(x => this.contributionStore.update({
-        article: x
-      }))
+      tap(x => {
+        x.versions.forEach(version => {
+          if (version.linkPdfCdn) {
+            version.linkPdfCdn = encodeURIComponent(version.linkPdfCdn);
+          }
+        });
+        this.contributionStore.update({
+          article: x
+        });
+      })
     ).subscribe();
   }
 }
