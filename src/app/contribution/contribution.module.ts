@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ContributionIndexComponent} from './contribution-index/contribution-index.component';
 import {RouterModule} from '@angular/router';
-import {CreateComponent} from './contribution-create/create.component';
 import {ContributionDetailComponent} from './contribution-detail/contribution-detail.component';
 import {NzGridModule} from 'ng-zorro-antd/grid';
 import {PdfJsViewerModule} from 'ng2-pdfjs-viewer';
@@ -28,15 +27,16 @@ import {ContributionCommentBoxComponent} from './contribution-comment-box/contri
 import {NzEmptyModule} from 'ng-zorro-antd/empty';
 import {NzDescriptionsModule} from 'ng-zorro-antd/descriptions';
 import {NzBadgeModule} from 'ng-zorro-antd/badge';
+import { ContributionCreateComponent } from './contribution-create/contribution-create.component';
 
 
 @NgModule({
   declarations: [
     ContributionIndexComponent,
-    CreateComponent,
     ContributionDetailComponent,
     ContributionEditComponent,
     ContributionCommentBoxComponent,
+    ContributionCreateComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +48,7 @@ import {NzBadgeModule} from 'ng-zorro-antd/badge';
         }
       },
       {
-        path: 'create', component: CreateComponent, data: {
+        path: 'create', component: ContributionCreateComponent, data: {
           breadcrumb: 'Create New Contribution'
         }
       },

@@ -3,7 +3,7 @@ import {ID} from '@datorama/akita';
 import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
 import {Contribution, createContribution} from './contribution.model';
 import {ContributionStore} from './contribution.store';
-import {ArticlesApiService, ContributionsApiService} from '../../api';
+import {ArticlesApiService, ContributionContributionCreateReq, ContributionsApiService} from '../../api';
 import {ContributionQuery} from './contribution.query';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs';
@@ -42,8 +42,10 @@ export class ContributionService {
     );
   }
 
-  add(contribution: Contribution) {
-    this.contributionStore.add(contribution);
+  add(contribution: ContributionContributionCreateReq): Observable<any> {
+    return this.contributionApiService.contributionsPost(contribution).pipe(
+      tap(x => this.contributionStore.add(createContribution(x)))
+    );
   }
 
   update(id, contribution: Partial<Contribution>) {
