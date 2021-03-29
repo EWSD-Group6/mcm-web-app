@@ -1,6 +1,6 @@
 <nz-comment *ngFor="let comment of comment$ | async"
             [nzAuthor]="comment.user.name"
-            [nzDatetime]="comment.createdAt"
+            [nzDatetime]="toNow(comment.createdAt)"
 >
   <nz-comment-content>
     <p>
@@ -11,10 +11,10 @@
 <nz-comment>
   <nz-comment-content>
     <nz-form-item>
-      <textarea nz-input rows="4"></textarea>
+      <textarea [formControl]="commentControl" nz-input rows="4"></textarea>
     </nz-form-item>
     <nz-form-item style="margin-top: 10px">
-      <button nz-button nzType="primary">
+      <button (click)="createComment()" nz-button nzType="primary">
         Add Comment
       </button>
     </nz-form-item>

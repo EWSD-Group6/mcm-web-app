@@ -23,6 +23,7 @@
     "@datorama/akita": "^6.1.2",
     "@ngneat/until-destroy": "^8.0.4",
     "@swimlane/ngx-charts": "^17.0.1",
+    "date-fns": "^2.19.0",
     "ng-zorro-antd": "^11.2.0",
     "ng2-pdfjs-viewer": "^6.0.1",
     "rxjs": "~6.6.0",
