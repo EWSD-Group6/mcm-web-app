@@ -61,7 +61,7 @@ export class ContainerComponent implements OnInit {
     },
     {
       title: 'Contribute Session',
-      icon: 'skin',
+      icon: 'cloud-upload',
       roles: [RoleEnum.Admin, RoleEnum.MarketingManager],
       children: [
         {
@@ -80,7 +80,7 @@ export class ContainerComponent implements OnInit {
     },
     {
       title: 'Faculty',
-      icon: 'skin',
+      icon: 'group',
       roles: [RoleEnum.Admin],
       children: [
         {

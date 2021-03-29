@@ -5,13 +5,15 @@ import {SessionStore} from './session.store';
 import {Observable} from 'rxjs/Observable';
 import {ContributeSessionsApiService, ContributesessionSessionCreateReq} from '../../api';
 import {SessionQuery} from './session.query';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({providedIn: 'root'})
 export class SessionService {
 
   constructor(private store: SessionStore,
               private api: ContributeSessionsApiService,
-              private query: SessionQuery) {
+              private query: SessionQuery,
+              private nzNotification: NzNotificationService) {
   }
 
 
@@ -52,6 +54,13 @@ export class SessionService {
       }
     }));
     this.get().subscribe();
+  }
+
+  delete(id: any) {
+    return this.api.contributeSessionsIdDelete(id).pipe(
+      tap(() => this.store.remove(id)),
+      tap(() => this.nzNotification.success('Delete session', `Session #${id} deleted`)),
+    ).subscribe();
   }
 
 }

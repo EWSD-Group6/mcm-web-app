@@ -35,4 +35,8 @@ export class SessionIndexComponent implements OnInit {
       page: $event.pageIndex - 1
     });
   }
+
+  delete(id) {
+    this.service.delete(id);
+  }
 }

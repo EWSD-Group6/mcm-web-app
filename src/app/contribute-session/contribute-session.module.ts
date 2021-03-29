@@ -9,16 +9,19 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NzFormModule} from 'ng-zorro-antd/form';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
+import { SessionEditComponent } from './session-edit/session-edit.component';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 
 @NgModule({
-  declarations: [SessionCreateComponent, SessionIndexComponent],
+  declarations: [SessionCreateComponent, SessionIndexComponent, SessionEditComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {path: '', pathMatch: 'full', redirectTo: 'index'},
       {path: 'index', component: SessionIndexComponent},
       {path: 'create', component: SessionCreateComponent},
+      {path: ':id/edit', component: SessionEditComponent},
     ]),
     NzTableModule,
     SharedModule,
@@ -26,6 +29,7 @@ import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
     ReactiveFormsModule,
     NzFormModule,
     NzDatePickerModule,
+    NzPopconfirmModule,
   ],
   exports: [RouterModule],
 })
