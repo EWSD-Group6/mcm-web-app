@@ -1,0 +1,59 @@
+<form (submit)="submitForm()" [formGroup]="form" nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Email</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid email" nzHasFeedback>
+      <input formControlName="email" name="email" nz-input type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Name</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid name" nzHasFeedback>
+      <input formControlName="name" name="name" nz-input type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid password" nzHasFeedback>
+      <input formControlName="password" name="password" nz-input type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Role</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid role" nzHasFeedback>
+      <nz-select
+        formControlName="role"
+        id="role"
+        nzPlaceHolder="Select role"
+      >
+        <nz-option nzLabel="Student" nzValue="student"></nz-option>
+        <nz-option nzLabel="Marketing Coordinator" nzValue="marketing_coordinator"></nz-option>
+        <nz-option nzLabel="Marketing Manager" nzValue="marketing_manager"></nz-option>
+        <nz-option nzLabel="Guest" nzValue="guest"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="requiredFaculty">
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Faculty</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid faculty" nzHasFeedback>
+      <nz-select
+        (nzScrollToBottom)="loadMore()"
+        [nzDropdownRender]="renderTemplate"
+        formControlName="facultyId"
+        nzAllowClear
+        nzPlaceHolder="Select faculty"
+      >
+        <nz-option *ngFor="let faculty of faculties$ | async" [nzLabel]="faculty.name"
+                   [nzValue]="faculty.id"></nz-option>
+      </nz-select>
+      <ng-template #renderTemplate>
+        <nz-spin *ngIf="isLoading"></nz-spin>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="register-area" nz-row>
+    <nz-form-control [nzOffset]="6" [nzSpan]="14">
+      <button nz-button nzType="primary" type="submit">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

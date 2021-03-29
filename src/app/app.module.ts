@@ -24,8 +24,7 @@ import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
 import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
 import {NzPageHeaderModule} from 'ng-zorro-antd/page-header';
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
-import {NzGridModule} from "ng-zorro-antd/grid";
-import {AuthenticationService} from './auth/authentication.service';
+import {NzGridModule} from 'ng-zorro-antd/grid';
 
 registerLocaleData(en);
 

@@ -1,0 +1,13 @@
+<form (submit)="submitForm()" [formGroup]="form" nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Title</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid name" nzHasFeedback>
+      <input [formControl]="form.get('name')" id="title" name="title" nz-input/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="register-area" nz-row>
+    <nz-form-control [nzOffset]="6" [nzSpan]="14">
+      <button nz-button nzType="primary" type="submit">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

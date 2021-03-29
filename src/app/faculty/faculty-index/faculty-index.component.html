@@ -1,0 +1,39 @@
+<nz-table
+  #table
+  (nzQueryParams)="onQueryParamsChange($event)"
+  [nzData]="data$ | async"
+  [nzFrontPagination]="false"
+  [nzLoadingDelay]="300"
+  [nzLoading]="loading$ | async"
+  [nzPageIndex]="pageIndex$ | async"
+  [nzPageSize]="pageSize$ | async"
+  [nzScroll]="{ x: '1100px' }"
+  [nzShowPagination]="true"
+  [nzTotal]="total$ | async"
+  nzBordered
+  nzTitle="Faculty List"
+>
+  <thead>
+  <tr>
+    <th nzLeft nzWidth="5%">#</th>
+    <th nzWidth="5%">Id</th>
+    <th nzWidth="50%">Name</th>
+    <th nzWidth="10%">Created At</th>
+    <th nzWidth="10%">Updated At</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of table.data; index as i">
+    <td nzLeft>{{i + 1}}</td>
+    <td>{{item.id}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.createdAt | appDate}}</td>
+    <td>{{item.updatedAt | appDate}}</td>
+    <td>
+      <button nz-button nzDanger>Delete</button>
+      <button nz-button>Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
