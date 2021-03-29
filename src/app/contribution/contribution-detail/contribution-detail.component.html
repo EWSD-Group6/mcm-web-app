@@ -32,7 +32,7 @@
                 <span>Online document preview is not ready, please comeback later or download original to view offline</span>
               </ng-template>
               <ng-template #footerTpl>
-                <button nz-button nzType="primary">Download Original</button>
+                <a nz-button nzType="primary" target="_blank" [href]="version.linkOriginalCdn">Download Original</a>
               </ng-template>
             </nz-empty>
           </nz-tab>
