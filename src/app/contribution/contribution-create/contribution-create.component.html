@@ -1,9 +1,21 @@
-<h1 style="text-align: center">Contribution 1</h1>
+<h1 *ngIf="editingContribution" style="text-align: center">Edit contribution #{{editingContribution.id}} | {{editingContribution.title}}</h1>
 
-<form (submit)="submitForm()" nz-form>
+<form (submit)="submitForm()" [formGroup]="form" nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Title</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid title" nzHasFeedback>
+      <input [formControl]="form.get('title')" id="title" name="title" nz-input/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Description</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid description" nzHasFeedback>
+      <input [formControl]="form.get('description')" id="description" name="description" nz-input/>
+    </nz-form-control>
+  </nz-form-item>
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24">Document</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid product">
+    <nz-form-control [nzSm]="14" [nzXs]="24">
       <nz-upload
         [nzAction]="uploadDocumentEndpoint"
         [nzHeaders]="authHeader"
@@ -11,14 +23,14 @@
         [(nzFileList)]="fileListDocument"
         [nzShowButton]="fileListDocument.length < 1"
       >
-        <button nz-button><i nz-icon nzType="upload"></i>Click to Upload</button>
+        <button type="button" nz-button><i nz-icon nzType="upload"></i>Click to Upload</button>
       </nz-upload>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24">Images</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid product">
+    <nz-form-control [nzSm]="14" [nzXs]="24">
       <nz-upload
         [nzAction]="uploadImageEndpoint"
         nzListType="picture-card"
@@ -42,7 +54,7 @@
   </nz-form-item>
   <nz-form-item class="register-area" nz-row>
     <nz-form-control [nzOffset]="6" [nzSpan]="14">
-      <button nz-button nzType="primary">Submit</button>
+      <button type="submit" nz-button nzType="primary">Submit</button>
     </nz-form-control>
   </nz-form-item>
 </form>

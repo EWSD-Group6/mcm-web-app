@@ -1,17 +1,15 @@
 <nz-row nzGutter="16">
   <nz-col nzSpan="6">
-    <nz-descriptions [nzTitle]="contribution?.title" [nzColumn]="1" nzBordered nzSize="default">
+    <nz-descriptions *ngIf="contribution" [nzTitle]="contribution.title" [nzColumn]="1" nzBordered nzSize="default">
       <nz-descriptions-item nzTitle="Description">{{contribution.description}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Author Name">{{contribution.user.name}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Author Email">{{contribution.user.email}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Faculty">{{contribution.user.facultyId}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Contribute Session">{{contribution.contributeSessionId}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Create Time">{{contribution.createdAt}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Update Time">{{contribution.updatedAt}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Create Time">{{contribution.createdAt | appDate}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Update Time">{{contribution.updatedAt | appDate}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Status">
-        <nz-badge *ngIf="contribution.status === 'reviewing'" nzStatus="processing" nzText="Reviewing"></nz-badge>
-        <nz-badge *ngIf="contribution.status === 'accepted'" nzStatus="success" nzText="Accepted"></nz-badge>
-        <nz-badge *ngIf="contribution.status === 'rejected'" nzStatus="error" nzText="Rejected"></nz-badge>
+        <app-contribution-status [contribution]="contribution"></app-contribution-status>
       </nz-descriptions-item>
     </nz-descriptions>
   </nz-col>
@@ -43,12 +41,20 @@
       <nz-tab nzTitle="Image">
         <nz-row nzGutter="16">
           <div *ngFor="let image of images$ | async" nz-col nzXs="12" nzLg="6">
-            <img
-              nz-image
-              width="100%"
-              [nzSrc]="image.link"
-              [alt]="image.title"
-            />
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta [nzTitle]="image.title"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img
+                nz-image
+                width="100%"
+                [nzSrc]="image.link | image:[500,500]"
+                [alt]="image.title"
+                nzFallback="/assets/error-image-2.png"
+                nzDisablePreview
+                (click)="preview(image)"
+              />
+            </ng-template>
           </div>
         </nz-row>
       </nz-tab>

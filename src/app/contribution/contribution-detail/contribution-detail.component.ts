@@ -7,6 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import {ArticleArticleRes, ContributionImageRes} from '../../api';
 import {Subscription} from 'rxjs';
 import {ContributionQuery} from '../state/contribution.query';
+import {NzImageService} from 'ng-zorro-antd/image';
+import {ImagePipe} from '../../shared/pipes/image.pipe';
 
 @Component({
   selector: 'app-contribution-detail',
@@ -23,13 +25,15 @@ export class ContributionDetailComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private service: ContributionService,
-              private query: ContributionQuery) {
+              private query: ContributionQuery,
+              private nzImageService: NzImageService,
+              private imagePipe: ImagePipe) {
     this.sub = this.route.paramMap.pipe(
       map(x => Number(x.get('id'))),
       switchMap(id => this.service.getById(id)),
       tap(x => this.service.setActive(x.id)),
       tap(x => this.service.getImages(x.id)),
-      tap(x => this.service.getArticle(x.id)),
+      tap(x => this.service.getArticle(x.articleId)),
     ).subscribe(
       x => this.contribution = x
     );
@@ -46,4 +50,10 @@ export class ContributionDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  preview(image: ContributionImageRes): void {
+    this.nzImageService.preview([{
+      alt: image.title,
+      src: this.imagePipe.transform(image.link, [1920, 0]),
+    }]);
+  }
 }

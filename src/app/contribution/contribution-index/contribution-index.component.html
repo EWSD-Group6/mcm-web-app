@@ -1,5 +1,39 @@
+<form [formGroup]="filterForm" nz-form nzLayout="inline" style="margin-bottom: 10px">
+    <nz-form-item>
+      <nz-form-label>Session</nz-form-label>
+      <nz-form-control>
+        <input formControlName="contributeSessionId" nz-input placeholder="placeholder"/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>User</nz-form-label>
+      <nz-form-control>
+        <input formControlName="studentId" nz-input placeholder="placeholder"/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Status</nz-form-label>
+      <nz-form-control>
+        <nz-select
+          id="status"
+          nzPlaceHolder="Select status"
+          formControlName="status"
+        >
+          <nz-option nzValue="reviewing" nzLabel="Reviewing"></nz-option>
+          <nz-option nzValue="accepted" nzLabel="Accepted"></nz-option>
+          <nz-option nzValue="rejected" nzLabel="Rejected"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button>Clear</button>
+      </nz-form-control>
+    </nz-form-item>
+</form>
 <nz-table
   #table
+  nzTitle="Contribution List"
   (nzQueryParams)="onQueryParamsChange($event)"
   [nzData]="data$ | async"
   [nzFrontPagination]="false"
@@ -9,35 +43,46 @@
   [nzPageSize]="pageSize$ | async"
   [nzShowPagination]="true"
   [nzTotal]="total$ | async"
+  nzBordered
+  [nzScroll]="{ x: '1100px' }"
 >
   <thead>
   <tr>
-    <th>#</th>
-    <th>Id</th>
-    <th>Session</th>
-    <th>User</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Created At</th>
-    <th>Updated At</th>
+    <th nzWidth="5%" nzLeft>#</th>
+    <th nzWidth="5%">Id</th>
+    <th nzWidth="10%">Session</th>
+    <th nzWidth="10%">User</th>
+    <th nzWidth="10%">Name</th>
+    <th nzWidth="15%">Description</th>
+    <th nzWidth="10%">Status</th>
+    <th nzWidth="10%">Created At</th>
+    <th nzWidth="10%">Updated At</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let item of table.data; index as i">
-    <td>{{i + 1}}</td>
+    <td nzLeft>{{i + 1}}</td>
     <td>{{item.id}}</td>
     <td>{{item.contributeSessionId}}</td>
     <td>{{item.user.name}}</td>
     <td>{{item.title}}</td>
     <td>{{item.description}}</td>
-    <td>{{item.status}}</td>
-    <td>{{item.createdAt}}</td>
-    <td>{{item.updatedAt}}</td>
     <td>
-      <button nz-button>Delete</button>
+      <app-contribution-status [contribution]="item"></app-contribution-status>
+    </td>
+    <td>{{item.createdAt | appDate}}</td>
+    <td>{{item.updatedAt | appDate}}</td>
+    <td>
+      <button nz-button nzType="danger"
+              nz-popconfirm
+              nzCancelText="cancel"
+              nzOkText="ok"
+              nzPopconfirmTitle="Are you sure?"
+              (nzOnConfirm)="delete(item.id)"
+      >Delete</button>
       <a nz-button [routerLink]="['/contribution', item.id]">View</a>
+      <a nz-button [routerLink]="['/contribution', item.id, 'edit']">Edit</a>
     </td>
   </tr>
   </tbody>

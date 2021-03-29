@@ -1,0 +1,16 @@
+<ng-container *ngIf="!canEdit">
+  <nz-badge *ngIf="contribution.status === 'reviewing'" nzStatus="processing" nzText="Reviewing"></nz-badge>
+  <nz-badge *ngIf="contribution.status === 'accepted'" nzStatus="success" nzText="Accepted"></nz-badge>
+  <nz-badge *ngIf="contribution.status === 'rejected'" nzStatus="error" nzText="Rejected"></nz-badge>
+</ng-container>
+<ng-container *ngIf="canEdit">
+  <nz-select
+    id="status"
+    nzPlaceHolder="Select status"
+    [formControl]="statusControl"
+  >
+    <nz-option nzValue="reviewing" nzLabel="Reviewing"></nz-option>
+    <nz-option nzValue="accepted" nzLabel="Accepted"></nz-option>
+    <nz-option nzValue="rejected" nzLabel="Rejected"></nz-option>
+  </nz-select>
+</ng-container>

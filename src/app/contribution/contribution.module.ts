@@ -16,7 +16,6 @@ import {NzTimelineModule} from 'ng-zorro-antd/timeline';
 import {NzDrawerModule} from 'ng-zorro-antd/drawer';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzInputModule} from 'ng-zorro-antd/input';
-import {ContributionEditComponent} from './contribution-edit/contribution-edit.component';
 import {NzUploadModule} from 'ng-zorro-antd/upload';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {NzMessageModule} from 'ng-zorro-antd/message';
@@ -28,15 +27,21 @@ import {NzEmptyModule} from 'ng-zorro-antd/empty';
 import {NzDescriptionsModule} from 'ng-zorro-antd/descriptions';
 import {NzBadgeModule} from 'ng-zorro-antd/badge';
 import { ContributionCreateComponent } from './contribution-create/contribution-create.component';
+import {SharedModule} from '../shared/shared.module';
+import {NzCardModule} from 'ng-zorro-antd/card';
+import { ContributionStatusComponent } from './contribution-status/contribution-status.component';
+import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 
 
 @NgModule({
   declarations: [
     ContributionIndexComponent,
     ContributionDetailComponent,
-    ContributionEditComponent,
     ContributionCommentBoxComponent,
     ContributionCreateComponent,
+    ContributionStatusComponent,
   ],
   imports: [
     CommonModule,
@@ -53,8 +58,9 @@ import { ContributionCreateComponent } from './contribution-create/contribution-
         }
       },
       {
-        path: ':id/edit', component: ContributionEditComponent, data: {
-          breadcrumb: 'Edit Contribution'
+        path: ':id/edit', component: ContributionCreateComponent, data: {
+          breadcrumb: 'Edit Contribution',
+          isEdit: true,
         }
       },
       {
@@ -85,6 +91,12 @@ import { ContributionCreateComponent } from './contribution-create/contribution-
     NzEmptyModule,
     NzDescriptionsModule,
     NzBadgeModule,
+    NzPopconfirmModule,
+
+    SharedModule,
+    NzCardModule,
+    NzSpaceModule,
+    NzSelectModule,
   ],
   exports: [RouterModule],
 })

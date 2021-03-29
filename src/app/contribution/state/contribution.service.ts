@@ -3,10 +3,16 @@ import {ID} from '@datorama/akita';
 import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
 import {Contribution, createContribution} from './contribution.model';
 import {ContributionStore} from './contribution.store';
-import {ArticlesApiService, ContributionContributionCreateReq, ContributionsApiService} from '../../api';
+import {
+  ArticlesApiService,
+  ContributionContributionCreateReq,
+  ContributionContributionUpdateReq,
+  ContributionsApiService
+} from '../../api';
 import {ContributionQuery} from './contribution.query';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs';
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Injectable({providedIn: 'root'})
 export class ContributionService {
@@ -14,7 +20,8 @@ export class ContributionService {
   constructor(private contributionStore: ContributionStore,
               private contributionApiService: ContributionsApiService,
               private query: ContributionQuery,
-              private articleApiService: ArticlesApiService) {
+              private articleApiService: ArticlesApiService,
+              private nzNotification: NzNotificationService) {
   }
 
 
@@ -48,12 +55,17 @@ export class ContributionService {
     );
   }
 
-  update(id, contribution: Partial<Contribution>) {
-    this.contributionStore.update(id, contribution);
+  update(id, req: ContributionContributionUpdateReq): Observable<any> {
+    return this.contributionApiService.contributionsIdPut(id, req).pipe(
+      tap(x => this.contributionStore.update(id, createContribution(x)))
+    );
   }
 
-  remove(id: ID) {
-    this.contributionStore.remove(id);
+  remove(id: number): void {
+    this.contributionApiService.contributionsIdDelete(id).pipe(
+      tap(() => this.contributionStore.remove(id)),
+      tap(() => this.nzNotification.success('Delete contribution', `Contribution #${id} deleted`)),
+    ).subscribe();
   }
 
   updateQuery(param: {
@@ -109,5 +121,13 @@ export class ContributionService {
         });
       })
     ).subscribe();
+  }
+
+  updateStatus(id: number, status: any): Observable<any> {
+    return this.contributionApiService.contributionsIdStatusPost(id, {
+      status,
+    }).pipe(
+      tap(() => this.nzNotification.success('Contribution', `Update contribution #${id}, status -> ${status}`))
+    );
   }
 }

@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.6",
     "@angular/service-worker": "~11.2.6",
     "@datorama/akita": "^6.1.2",
+    "@ngneat/until-destroy": "^8.0.4",
     "@swimlane/ngx-charts": "^17.0.1",
     "ng-zorro-antd": "^11.2.0",
     "ng2-pdfjs-viewer": "^6.0.1",

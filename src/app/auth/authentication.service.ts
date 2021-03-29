@@ -3,7 +3,8 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {filter, finalize, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
-import {AuthApiService, AuthzLoginResponse} from '../api';
+import {AuthApiService, AuthzLoginResponse, UserUserCreateReq} from '../api';
+import RoleEnum = UserUserCreateReq.RoleEnum;
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,9 @@ export class AuthenticationService {
 
   getCurrentLoggedInUser(): Observable<AuthzLoginResponse> {
     return this.currentUser$.asObservable();
+  }
+
+  getCurrentRole(): RoleEnum {
+    return this.currentUser$.value.role as RoleEnum;
   }
 }
