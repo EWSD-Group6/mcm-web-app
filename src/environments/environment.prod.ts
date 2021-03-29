@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApi: 'https://stage-shopee-tool-api.devstack.cloud',
+  baseApi: 'https://stage-mcm-api.devstack.cloud',
 };
