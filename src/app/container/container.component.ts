@@ -74,7 +74,7 @@ export class ContainerComponent implements OnInit {
           title: 'Create Contribution Session',
           icon: 'dashboard',
           link: '/contribute-session/create',
-          roles: [RoleEnum.Admin, RoleEnum.MarketingManager],
+          roles: [RoleEnum.Admin],
         }
       ],
     },

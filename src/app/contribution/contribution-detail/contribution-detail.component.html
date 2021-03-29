@@ -1,5 +1,5 @@
 <nz-row nzGutter="16">
-  <nz-col nzSpan="6">
+  <nz-col nzLg="6" nzXs="24">
     <nz-descriptions *ngIf="contribution" [nzTitle]="contribution.title" [nzColumn]="1" nzBordered nzSize="default">
       <nz-descriptions-item nzTitle="Description">{{contribution.description}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Author Name">{{contribution.user.name}}</nz-descriptions-item>
@@ -13,7 +13,7 @@
       </nz-descriptions-item>
     </nz-descriptions>
   </nz-col>
-  <nz-col nzSpan="18">
+  <nz-col nzLg="18" nzXs="24">
     <nz-tabset  [nzTabBarExtraContent]="extraTemplate" [nzAnimated]="false">
       <nz-tab nzTitle="Document" nzForceRender>
         <nz-tabset *ngIf="(article$ | async) as article" [nzTabPosition]="'left'" [nzAnimated]="false">
