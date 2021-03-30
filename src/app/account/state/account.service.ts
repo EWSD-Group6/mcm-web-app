@@ -5,13 +5,15 @@ import {AccountStore} from './account.store';
 import {UsersApiService, UserUserCreateReq} from '../../api';
 import {Observable} from 'rxjs/Observable';
 import {AccountQuery} from './account.query';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({providedIn: 'root'})
 export class AccountService {
 
   constructor(private store: AccountStore,
               private api: UsersApiService,
-              private query: AccountQuery) {
+              private query: AccountQuery,
+              private nzNotification: NzNotificationService) {
   }
 
   get(): Observable<any> {
@@ -51,6 +53,13 @@ export class AccountService {
       }
     }));
     this.get().subscribe();
+  }
+
+  delete(id: any) {
+    return this.api.usersIdDelete(id).pipe(
+      tap(() => this.store.remove(id)),
+      tap(() => this.nzNotification.success('Delete account', `Account #${id} deleted`)),
+    ).subscribe();
   }
 
 }

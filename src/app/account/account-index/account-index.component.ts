@@ -36,4 +36,7 @@ export class AccountIndexComponent implements OnInit {
     });
   }
 
+  delete(id) {
+    this.service.delete(id);
+  }
 }

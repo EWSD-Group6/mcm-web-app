@@ -9,6 +9,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {NzFormModule} from 'ng-zorro-antd/form';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzInputModule} from 'ng-zorro-antd/input';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {NzInputModule} from 'ng-zorro-antd/input';
     NzFormModule,
     NzButtonModule,
     NzInputModule,
+    NzPopconfirmModule,
   ],
   exports: [RouterModule],
 })

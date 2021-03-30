@@ -37,7 +37,13 @@
     <td>{{item.createdAt | appDate}}</td>
     <td>{{item.updatedAt | appDate}}</td>
     <td>
-      <button nz-button nzDanger>Delete</button>
+      <button nz-button nzType="danger"
+              nz-popconfirm
+              nzCancelText="cancel"
+              nzOkText="ok"
+              nzPopconfirmTitle="Are you sure?"
+              (nzOnConfirm)="delete(item.id)"
+      >Delete</button>
       <button nz-button>Edit</button>
     </td>
   </tr>

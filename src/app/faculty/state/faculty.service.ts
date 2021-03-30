@@ -5,13 +5,15 @@ import {FacultyStore} from './faculty.store';
 import {Observable} from 'rxjs/Observable';
 import {FacultiesApiService, FacultyFacultyCreateReq} from '../../api';
 import {FacultyQuery} from './faculty.query';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({providedIn: 'root'})
 export class FacultyService {
 
   constructor(private store: FacultyStore,
               private api: FacultiesApiService,
-              private query: FacultyQuery) {
+              private query: FacultyQuery,
+              private nzNotification: NzNotificationService) {
   }
 
   get(): Observable<any> {
@@ -86,5 +88,12 @@ export class FacultyService {
         ).subscribe();
       }
     });
+  }
+
+  delete(id: any) {
+    this.api.facultiesIdDelete(id).pipe(
+      tap(() => this.store.remove(id)),
+      tap(() => this.nzNotification.success('Delete Faculty', `Falculty #${id} deleted`)),
+    ).subscribe();
   }
 }

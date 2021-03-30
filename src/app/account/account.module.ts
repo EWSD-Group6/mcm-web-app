@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzSpinModule} from 'ng-zorro-antd/spin';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [AccountIndexComponent, AccountCreateComponent],
@@ -37,6 +38,7 @@ import {NzSpinModule} from 'ng-zorro-antd/spin';
     NzInputModule,
     NzSelectModule,
     NzSpinModule,
+    NzPopconfirmModule,
   ],
   exports: [RouterModule]
 })
