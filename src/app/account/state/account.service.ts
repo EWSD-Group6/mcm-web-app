@@ -55,8 +55,8 @@ export class AccountService {
     this.get().subscribe();
   }
 
-  delete(id: any) {
-    return this.api.usersIdDelete(id).pipe(
+  delete(id: number) : void {
+    this.api.usersIdDelete(id).pipe(
       tap(() => this.store.remove(id)),
       tap(() => this.nzNotification.success('Delete account', `Account #${id} deleted`)),
     ).subscribe();

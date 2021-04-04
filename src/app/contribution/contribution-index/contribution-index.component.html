@@ -74,7 +74,7 @@
     <td>{{item.createdAt | appDate}}</td>
     <td>{{item.updatedAt | appDate}}</td>
     <td>
-      <button nz-button nzType="danger"
+      <button *ngIf="canEdit()" nz-button nzType="danger"
               nz-popconfirm
               nzCancelText="cancel"
               nzOkText="ok"
@@ -82,7 +82,7 @@
               (nzOnConfirm)="delete(item.id)"
       >Delete</button>
       <a nz-button [routerLink]="['/contribution', item.id]">View</a>
-      <a nz-button [routerLink]="['/contribution', item.id, 'edit']">Edit</a>
+      <a *ngIf="canEdit()" nz-button [routerLink]="['/contribution', item.id, 'edit']">Edit</a>
     </td>
   </tr>
   </tbody>

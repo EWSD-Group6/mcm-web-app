@@ -6,6 +6,7 @@ import {ContributionQuery} from '../state/contribution.query';
 import {ContributionService} from '../state/contribution.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
+import { AuthenticationService } from 'src/app/auth/authentication.service';
 
 @UntilDestroy()
 @Component({
@@ -23,7 +24,8 @@ export class ContributionIndexComponent implements OnInit {
 
   constructor(private query: ContributionQuery,
               private service: ContributionService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private authenticationService: AuthenticationService) {
     this.loading$ = this.query.selectLoading();
     this.data$ = this.query.selectAll();
     this.total$ = this.query.select(x => x.paginate.total);
@@ -59,5 +61,9 @@ export class ContributionIndexComponent implements OnInit {
       facultyId: [null],
       studentId: [null],
     });
+  }
+
+  canEdit() {
+    return this.authenticationService.getCurrentRole() == "student";
   }
 }
