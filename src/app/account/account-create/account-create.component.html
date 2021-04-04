@@ -11,7 +11,7 @@
       <input formControlName="name" name="name" nz-input type="text">
     </nz-form-control>
   </nz-form-item>
-  <nz-form-item>
+  <nz-form-item *ngIf="!editingUser">
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Password</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid password" nzHasFeedback>
       <input formControlName="password" name="password" nz-input type="text">
@@ -29,6 +29,20 @@
         <nz-option nzLabel="Marketing Coordinator" nzValue="marketing_coordinator"></nz-option>
         <nz-option nzLabel="Marketing Manager" nzValue="marketing_manager"></nz-option>
         <nz-option nzLabel="Guest" nzValue="guest"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Status</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid status" nzHasFeedback>
+      <nz-select
+        formControlName="status"
+        id="status"
+        nzPlaceHolder="Select status"
+      >
+        <nz-option nzLabel="Active" nzValue="active"></nz-option>
+        <nz-option nzLabel="Disable" nzValue="disable"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>

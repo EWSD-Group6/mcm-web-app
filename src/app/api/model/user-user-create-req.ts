@@ -17,6 +17,7 @@ export interface UserUserCreateReq {
     name?: string;
     password?: string;
     role?: UserUserCreateReq.RoleEnum;
+    status?: string;
 }
 export namespace UserUserCreateReq {
     export type RoleEnum = 'admin' | 'marketing_manager' | 'marketing_coordinator' | 'student' | 'guest';

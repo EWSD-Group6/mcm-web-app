@@ -30,9 +30,9 @@ import { ContributionCreateComponent } from './contribution-create/contribution-
 import {SharedModule} from '../shared/shared.module';
 import {NzCardModule} from 'ng-zorro-antd/card';
 import { ContributionStatusComponent } from './contribution-status/contribution-status.component';
-import {NzSpaceModule} from "ng-zorro-antd/space";
-import {NzSelectModule} from "ng-zorro-antd/select";
-import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
+import {NzSpaceModule} from 'ng-zorro-antd/space';
+import {NzSelectModule} from 'ng-zorro-antd/select';
+import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
 
 
 @NgModule({

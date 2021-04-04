@@ -17,5 +17,6 @@ export interface UserUserUpdateReq {
     name?: string;
     password?: string;
     role?: string;
+    status?: string;
 }
 

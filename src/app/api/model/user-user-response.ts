@@ -18,6 +18,7 @@ export interface UserUserResponse {
     id?: number;
     name?: string;
     role?: string;
+    status?: string;
     updatedAt?: string;
 }
 

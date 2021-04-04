@@ -21,6 +21,7 @@
     <th nzWidth="10%">Name</th>
     <th nzWidth="15%">Email</th>
     <th nzWidth="10%">Role</th>
+    <th nzWidth="10%">Status</th>
     <th nzWidth="15%">Created At</th>
     <th nzWidth="15%">Updated At</th>
     <th>Action</th>
@@ -34,6 +35,7 @@
     <td>{{item.name}}</td>
     <td>{{item.email}}</td>
     <td>{{item.role}}</td>
+    <td>{{item.status}}</td>
     <td>{{item.createdAt | appDate}}</td>
     <td>{{item.updatedAt | appDate}}</td>
     <td>
@@ -44,7 +46,7 @@
               nzPopconfirmTitle="Are you sure?"
               (nzOnConfirm)="delete(item.id)"
       >Delete</button>
-      <button nz-button>Edit</button>
+      <button nz-button [routerLink]="['/account', item.id, 'edit']">Edit</button>
     </td>
   </tr>
   </tbody>

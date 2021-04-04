@@ -28,6 +28,12 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
           breadcrumb: 'Account Create',
         }
       },
+      {
+        path: ':id/edit', component: AccountCreateComponent, data: {
+          breadcrumb: 'Account Edit',
+          isEdit: true
+        }
+      },
     ]),
     CommonModule,
     NzTableModule,

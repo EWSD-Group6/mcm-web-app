@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {finalize, switchMap, take, tap} from 'rxjs/operators';
-import {createAccount} from './account.model';
+import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
+import {Account, createAccount} from './account.model';
 import {AccountStore} from './account.store';
-import {UsersApiService, UserUserCreateReq} from '../../api';
+import {UsersApiService, UserUserCreateReq, UserUserUpdateReq} from '../../api';
 import {Observable} from 'rxjs/Observable';
 import {AccountQuery} from './account.query';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -55,11 +55,20 @@ export class AccountService {
     this.get().subscribe();
   }
 
-  delete(id: number) : void {
+  delete(id: number): void {
     this.api.usersIdDelete(id).pipe(
       tap(() => this.store.remove(id)),
       tap(() => this.nzNotification.success('Delete account', `Account #${id} deleted`)),
     ).subscribe();
   }
 
+  getById(id: number): Observable<Account> {
+    return this.api.usersIdGet(id).pipe(map(x => createAccount(x)));
+  }
+
+  update(id: number, value: UserUserUpdateReq): Observable<any> {
+    return this.api.usersIdPatch(id, value).pipe(
+      tap(x => this.store.update(id, createAccount(x)))
+    );
+  }
 }
