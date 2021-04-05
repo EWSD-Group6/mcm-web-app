@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {finalize, switchMap, take, tap} from 'rxjs/operators';
-import {createSession} from './session.model';
+import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
+import {createSession, Session} from './session.model';
 import {SessionStore} from './session.store';
 import {Observable} from 'rxjs/Observable';
 import {ContributeSessionsApiService, ContributesessionSessionCreateReq} from '../../api';
@@ -56,11 +56,18 @@ export class SessionService {
     this.get().subscribe();
   }
 
-  delete(id: any) {
+  delete(id: any): any {
     return this.api.contributeSessionsIdDelete(id).pipe(
       tap(() => this.store.remove(id)),
       tap(() => this.nzNotification.success('Delete session', `Session #${id} deleted`)),
     ).subscribe();
   }
 
+  getById(id: number): Observable<Session> {
+    return this.api.contributeSessionsIdGet(id).pipe(map(x => createSession(x)));
+  }
+
+  update(id: number, value: any): Observable<any> {
+    return this.api.contributeSessionsIdPut(id, value);
+  }
 }

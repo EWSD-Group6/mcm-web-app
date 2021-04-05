@@ -12,6 +12,7 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzSpinModule} from 'ng-zorro-antd/spin';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import {NzTagModule} from "ng-zorro-antd/tag";
 
 @NgModule({
   declarations: [AccountIndexComponent, AccountCreateComponent],
@@ -45,6 +46,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzSelectModule,
     NzSpinModule,
     NzPopconfirmModule,
+    NzTagModule,
   ],
   exports: [RouterModule]
 })

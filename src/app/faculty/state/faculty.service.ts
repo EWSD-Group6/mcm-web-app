@@ -97,7 +97,13 @@ export class FacultyService {
   delete(id: any) {
     this.api.facultiesIdDelete(id).pipe(
       tap(() => this.store.remove(id)),
-      tap(() => this.nzNotification.success('Delete Faculty', `Falculty #${id} deleted`)),
+      tap(() => this.nzNotification.success('Delete Faculty', `Faculty #${id} deleted`)),
     ).subscribe();
+  }
+
+  update(id: number, value: any): Observable<any> {
+    return this.api.facultiesIdPut(id, value).pipe(
+      tap(() => this.nzNotification.success('Update Faculty', `Faculty #${id} updated`)),
+    );
   }
 }

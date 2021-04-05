@@ -1,13 +1,7 @@
-<ngx-charts-bar-vertical
-  [scheme]="colorScheme"
-  [results]="single"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="true"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  (select)="onSelect($event)">
-</ngx-charts-bar-vertical>
+<ng-container *ngIf="currentUser$ | async as user">
+  <app-dashboard-student *ngIf="user.role === 'student'"></app-dashboard-student>
+  <app-dashboard-guest *ngIf="user.role === 'guest'"></app-dashboard-guest>
+  <app-dashboard-marketing-coordinator *ngIf="user.role === 'marketing_coordinator'"></app-dashboard-marketing-coordinator>
+  <app-dashboard-marketing-manager *ngIf="user.role === 'marketing_manager'"></app-dashboard-marketing-manager>
+  <app-dashboard-admin *ngIf="user.role === 'admin'"></app-dashboard-admin>
+</ng-container>

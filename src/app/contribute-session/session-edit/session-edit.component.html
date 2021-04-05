@@ -1,1 +1,20 @@
-<p>session-edit works!</p>
+<form (submit)="submitForm()" [formGroup]="form" nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Open -> Closure Time</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid open/closure time" nzHasFeedback>
+      <nz-range-picker formControlName="rangeTime" id="rangeTime" name="rangeTime" nzShowTime></nz-range-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Final Closure Time</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid final closure time" nzHasFeedback>
+      <nz-date-picker formControlName="finalClosureTime" id="finalClosureTime" name="finalClosureTime"
+                      nzShowTime></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="register-area" nz-row>
+    <nz-form-control [nzOffset]="6" [nzSpan]="14">
+      <button nz-button nzType="primary" type="submit">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
