@@ -21,6 +21,7 @@ export class FacultyCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   submitForm(): void {

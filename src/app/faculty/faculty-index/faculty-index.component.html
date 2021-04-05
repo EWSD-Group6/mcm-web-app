@@ -38,7 +38,7 @@
               nzPopconfirmTitle="Are you sure?"
               (nzOnConfirm)="delete(item.id)"
       >Delete</button>
-      <button nz-button>Edit</button>
+      <button nz-button [routerLink]="['/faculty', item.id, 'edit']">Edit</button>
     </td>
   </tr>
   </tbody>

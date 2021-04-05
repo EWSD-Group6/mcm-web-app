@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {finalize, switchMap, take, tap} from 'rxjs/operators';
-import {createFaculty} from './faculty.model';
+import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
+import {Faculty, createFaculty} from './faculty.model';
 import {FacultyStore} from './faculty.store';
 import {Observable} from 'rxjs/Observable';
 import {FacultiesApiService, FacultyFacultyCreateReq} from '../../api';
@@ -88,6 +88,10 @@ export class FacultyService {
         ).subscribe();
       }
     });
+  }
+
+  getById(id: number) : Observable<Faculty> {
+    return this.api.facultiesIdGet(id).pipe(map(x => createFaculty(x)));
   }
 
   delete(id: any) {

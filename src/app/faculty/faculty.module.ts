@@ -20,6 +20,12 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
       {path: '', pathMatch: 'full', redirectTo: 'index'},
       {path: 'index', component: FacultyIndexComponent},
       {path: 'create', component: FacultyCreateComponent},
+      {
+        path: ':id/edit', component: FacultyCreateComponent, data: {
+          breadcrumb: 'Faculty Edit',
+          isEdit: true
+        }
+      },
     ]),
     NzTableModule,
     SharedModule,
