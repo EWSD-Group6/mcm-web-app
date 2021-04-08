@@ -43,7 +43,7 @@
         <ul class="header-menu" nz-menu nzMode="horizontal" nzTheme="light" style="line-height: 64px; float: right">
           <li *ngIf="user$ | async as user" nz-menu-item>
             <a [nzDropdownMenu]="menu" nz-dropdown>
-              <nz-avatar nz-icon="user" nzSrc=""></nz-avatar>
+              {{user.name}}
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu nzSelectable>
