@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {SessionService} from '../../contribute-session/state/session.service';
-import {SessionQuery} from '../../contribute-session/state/session.query';
-import {Session} from '../../contribute-session/state/session.model';
-import { NzCalendarMode } from 'ng-zorro-antd/calendar';
+import {Component, OnInit} from '@angular/core';
+import {DashboardService} from '../state/dashboard.service';
+import {FormControl} from '@angular/forms';
+import {DatePipe} from '@angular/common';
+import {ContributesessionSessionRes} from '../../api';
 
 
 @Component({
@@ -12,16 +12,39 @@ import { NzCalendarMode } from 'ng-zorro-antd/calendar';
 })
 export class DashboardStudentComponent implements OnInit {
 
-  deadline: number;
-  date = new Date(2012, 11, 21);
-  mode: NzCalendarMode = 'month';
+  currentSession: ContributesessionSessionRes;
+  calendarControl = new FormControl(new Date());
+  dateMap: Record<string, {
+    type: string,
+    content: string
+  }>;
+  isErrorNoSession = false;
 
-  panelChange(change: { date: Date; mode: string }): void {
-    console.log(change.date, change.mode);
-  }
-
-  constructor(private service:SessionService) {
-    this.deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
+  constructor(private service: DashboardService,
+              private datePipe: DatePipe) {
+    this.service.getCurrentSession().subscribe(
+      x => {
+        this.currentSession = {
+          ...x,
+          closureTime: new Date(x.closureTime) as any,
+          finalClosureTime: new Date(x.finalClosureTime) as any,
+        };
+        this.dateMap = {};
+        this.dateMap[this.datePipe.transform(x.openTime, 'shortDate')] = {
+          type: 'success',
+          content: 'Open time contribution #' + x.id
+        };
+        this.dateMap[this.datePipe.transform(x.closureTime, 'shortDate')] = {
+          type: 'success',
+          content: 'Closure time contribution #' + x.id
+        };
+        this.dateMap[this.datePipe.transform(x.finalClosureTime, 'shortDate')] = {
+          type: 'success',
+          content: 'Final closure time contribution #' + x.id
+        };
+      },
+      err => this.isErrorNoSession = true
+    );
   }
 
   ngOnInit(): void {

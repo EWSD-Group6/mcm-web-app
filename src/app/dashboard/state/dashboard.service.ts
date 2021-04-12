@@ -1,14 +1,21 @@
 import {Injectable} from '@angular/core';
 import {tap} from 'rxjs/operators';
 import {DashboardStore} from './dashboard.store';
-import {StatisticContributionFacultyChart, StatisticContributionStudentChart, StatisticsApiService} from '../../api';
+import {
+  ContributeSessionsApiService,
+  ContributesessionSessionRes,
+  StatisticContributionFacultyChart,
+  StatisticContributionStudentChart,
+  StatisticsApiService
+} from '../../api';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable({providedIn: 'root'})
 export class DashboardService {
 
   constructor(private dashboardStore: DashboardStore,
-              private api: StatisticsApiService) {
+              private api: StatisticsApiService,
+              private contributeSessionApiService: ContributeSessionsApiService) {
   }
 
   loadAdminStats(): void {
@@ -25,5 +32,9 @@ export class DashboardService {
 
   getContributionPerStudentChartData(): Observable<StatisticContributionStudentChart> {
     return this.api.statisticsContributionStudentChartGet();
+  }
+
+  getCurrentSession(): Observable<ContributesessionSessionRes> {
+    return this.contributeSessionApiService.contributeSessionsCurrentGet();
   }
 }

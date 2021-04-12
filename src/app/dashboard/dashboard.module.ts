@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {DashboardComponent} from './dashboard.component';
 import {RouterModule} from '@angular/router';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
@@ -19,6 +19,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
 import {ChartContributionPerFacultyComponent} from './chart-contribution-per-faculty/chart-contribution-per-faculty.component';
 import {ChartContributionPerStudentComponent} from './chart-contribution-per-student/chart-contribution-per-student.component';
+import {NzBadgeModule} from 'ng-zorro-antd/badge';
+import {NzResultModule} from 'ng-zorro-antd/result';
 
 
 @NgModule({
@@ -47,6 +49,11 @@ import {ChartContributionPerStudentComponent} from './chart-contribution-per-stu
     NzCalendarModule,
     ReactiveFormsModule,
     NzDividerModule,
+    NzBadgeModule,
+    NzResultModule,
+  ],
+  providers: [
+    DatePipe,
   ]
 })
 export class DashboardModule {
