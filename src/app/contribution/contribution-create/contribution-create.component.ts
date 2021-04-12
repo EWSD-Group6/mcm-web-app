@@ -12,6 +12,7 @@ import {ContributionQuery} from '../state/contribution.query';
 import {ImagePipe} from '../../shared/pipes/image.pipe';
 import {ContributionContributionCreateReq} from '../../api';
 import {Contribution} from '../state/contribution.model';
+import {Observable} from 'rxjs/Observable';
 
 @UntilDestroy()
 @Component({
@@ -25,6 +26,9 @@ export class ContributionCreateComponent implements OnInit {
   form: FormGroup;
   editingContribution: Contribution;
   onRemoveUploadedImage: any;
+  isToCVisible = false;
+  termAndCondition$: Observable<string>;
+  loading$: Observable<boolean>;
 
   constructor(private msg: NzMessageService,
               private service: ContributionService,
@@ -65,13 +69,15 @@ export class ContributionCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.termAndCondition$ = this.query.select(x => x.termAndCondition);
+    this.loading$ = this.query.selectLoading();
   }
 
   buildForm(): FormGroup {
     return this.fb.group({
       title: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(255)]],
       description: [null, [Validators.minLength(15), Validators.maxLength(512)]],
-
+      agreeTermAndCondition: [false, [Validators.requiredTrue]]
     });
   }
 
@@ -127,5 +133,10 @@ export class ContributionCreateComponent implements OnInit {
     return {
       authorization: 'Bearer ' + localStorage.getItem('token')
     };
+  }
+
+  viewTermAndCondition(): void {
+    this.isToCVisible = true;
+    this.service.loadTermAndCondition();
   }
 }

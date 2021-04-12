@@ -44,6 +44,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'system',
+        loadChildren: () => import('./system/system.module').then(m => m.SystemModule),
+        data: {
+          breadcrumb: 'System'
+        }
+      },
+      {
         path: '**', pathMatch: 'full', component: Page404Component
       }
     ]

@@ -26,6 +26,7 @@
     "date-fns": "^2.19.0",
     "ng-zorro-antd": "^11.2.0",
     "ng2-pdfjs-viewer": "^6.0.1",
+    "ngx-quill": "^13.2.0",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.6",
     "tslib": "^2.0.0",

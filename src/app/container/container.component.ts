@@ -97,6 +97,19 @@ export class ContainerComponent implements OnInit {
         }
       ],
     },
+    {
+      title: 'System',
+      icon: 'group',
+      roles: [RoleEnum.Admin],
+      children: [
+        {
+          title: 'Term and Condition',
+          icon: 'dashboard',
+          link: '/system/term-and-condition',
+          roles: [RoleEnum.Admin],
+        },
+      ],
+    }
   ];
   user$: Observable<AuthzLoginResponse>;
   menus$: Observable<MenuItem[]>;

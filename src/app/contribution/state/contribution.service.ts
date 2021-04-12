@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {ID} from '@datorama/akita';
 import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
 import {Contribution, createContribution} from './contribution.model';
 import {ContributionStore} from './contribution.store';
@@ -7,12 +6,13 @@ import {
   ArticlesApiService,
   ContributionContributionCreateReq,
   ContributionContributionUpdateReq,
-  ContributionsApiService
+  ContributionsApiService,
+  SystemDataApiService
 } from '../../api';
 import {ContributionQuery} from './contribution.query';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs';
-import {NzNotificationService} from "ng-zorro-antd/notification";
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 
 @Injectable({providedIn: 'root'})
 export class ContributionService {
@@ -21,7 +21,9 @@ export class ContributionService {
               private contributionApiService: ContributionsApiService,
               private query: ContributionQuery,
               private articleApiService: ArticlesApiService,
-              private nzNotification: NzNotificationService) {
+              private nzNotification: NzNotificationService,
+              private systemData: SystemDataApiService,
+  ) {
   }
 
 
@@ -50,13 +52,17 @@ export class ContributionService {
   }
 
   add(contribution: ContributionContributionCreateReq): Observable<any> {
+    this.contributionStore.setLoading(true);
     return this.contributionApiService.contributionsPost(contribution).pipe(
+      finalize(() => this.contributionStore.setLoading(false)),
       tap(x => this.contributionStore.add(createContribution(x)))
     );
   }
 
   update(id, req: ContributionContributionUpdateReq): Observable<any> {
+    this.contributionStore.setLoading(true);
     return this.contributionApiService.contributionsIdPut(id, req).pipe(
+      finalize(() => this.contributionStore.setLoading(false)),
       tap(x => this.contributionStore.update(id, createContribution(x)))
     );
   }
@@ -129,5 +135,15 @@ export class ContributionService {
     }).pipe(
       tap(() => this.nzNotification.success('Contribution', `Update contribution #${id}, status -> ${status}`))
     );
+  }
+
+  loadTermAndCondition(): void {
+    this.systemData.systemDataGet()
+      .pipe(tap(x => {
+        this.contributionStore.update({
+          termAndCondition: x.find(item => item.key === 'term_and_condition').value,
+        });
+      }))
+      .subscribe();
   }
 }

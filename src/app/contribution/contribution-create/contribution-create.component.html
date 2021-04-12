@@ -45,16 +45,26 @@
           <div style="margin-top: 8px">Upload images</div>
         </div>
       </nz-upload>
-      <!--      <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">-->
-      <!--        <ng-template #modalContent>-->
-      <!--          <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />-->
-      <!--        </ng-template>-->
-      <!--      </nz-modal>-->
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Agreement</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="You must accept term and condition" nzHasFeedback>
+      <input type="checkbox" nz-input formControlName="agreeTermAndCondition"/>
+      I agree with <a (click)="viewTermAndCondition()">Term and Condition</a>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="register-area" nz-row>
     <nz-form-control [nzOffset]="6" [nzSpan]="14">
-      <button type="submit" nz-button nzType="primary">Submit</button>
+      <button [nzLoading]="loading$ | async" type="submit" nz-button nzType="primary">Submit</button>
     </nz-form-control>
   </nz-form-item>
 </form>
+
+<nz-modal [nzVisible]="isToCVisible" nzTitle="Terms and Conditions"
+          (nzOnCancel)="isToCVisible = false"
+          (nzOnOk)="isToCVisible = false">
+  <ng-container *nzModalContent>
+    <quill-view [content]="termAndCondition$ | async"></quill-view>
+  </ng-container>
+</nz-modal>

@@ -33,6 +33,8 @@ import { ContributionStatusComponent } from './contribution-status/contribution-
 import {NzSpaceModule} from 'ng-zorro-antd/space';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
+import {NzCheckboxModule} from 'ng-zorro-antd/checkbox';
+import {QuillModule} from 'ngx-quill';
 
 
 @NgModule({
@@ -43,61 +45,63 @@ import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
     ContributionCreateComponent,
     ContributionStatusComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {path: '', pathMatch: 'full', redirectTo: 'index'},
-      {
-        path: 'index', component: ContributionIndexComponent, data: {
-          breadcrumb: 'Index'
-        }
-      },
-      {
-        path: 'create', component: ContributionCreateComponent, data: {
-          breadcrumb: 'Create New Contribution'
-        }
-      },
-      {
-        path: ':id/edit', component: ContributionCreateComponent, data: {
-          breadcrumb: 'Edit Contribution',
-          isEdit: true,
-        }
-      },
-      {
-        path: ':id', component: ContributionDetailComponent, data: {
-          breadcrumb: 'Detail'
-        }
-      },
-    ]),
-    PdfJsViewerModule,
-    ReactiveFormsModule,
-    NzGridModule,
-    NzImageModule,
-    NzDividerModule,
-    NzCommentModule,
-    NzAvatarModule,
-    NzToolTipModule,
-    NzIconModule,
-    NzTabsModule,
-    NzTimelineModule,
-    NzDrawerModule,
-    NzButtonModule,
-    NzInputModule,
-    NzUploadModule,
-    NzModalModule,
-    NzMessageModule,
-    NzFormModule,
-    NzTableModule,
-    NzEmptyModule,
-    NzDescriptionsModule,
-    NzBadgeModule,
-    NzPopconfirmModule,
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {path: '', pathMatch: 'full', redirectTo: 'index'},
+            {
+                path: 'index', component: ContributionIndexComponent, data: {
+                    breadcrumb: 'Index'
+                }
+            },
+            {
+                path: 'create', component: ContributionCreateComponent, data: {
+                    breadcrumb: 'Create New Contribution'
+                }
+            },
+            {
+                path: ':id/edit', component: ContributionCreateComponent, data: {
+                    breadcrumb: 'Edit Contribution',
+                    isEdit: true,
+                }
+            },
+            {
+                path: ':id', component: ContributionDetailComponent, data: {
+                    breadcrumb: 'Detail'
+                }
+            },
+        ]),
+        PdfJsViewerModule,
+        ReactiveFormsModule,
+        NzGridModule,
+        NzImageModule,
+        NzDividerModule,
+        NzCommentModule,
+        NzAvatarModule,
+        NzToolTipModule,
+        NzIconModule,
+        NzTabsModule,
+        NzTimelineModule,
+        NzDrawerModule,
+        NzButtonModule,
+        NzInputModule,
+        NzUploadModule,
+        NzModalModule,
+        NzMessageModule,
+        NzFormModule,
+        NzTableModule,
+        NzEmptyModule,
+        NzDescriptionsModule,
+        NzBadgeModule,
+        NzPopconfirmModule,
 
-    SharedModule,
-    NzCardModule,
-    NzSpaceModule,
-    NzSelectModule,
-  ],
+        SharedModule,
+        NzCardModule,
+        NzSpaceModule,
+        NzSelectModule,
+        NzCheckboxModule,
+        QuillModule.forRoot(),
+    ],
   exports: [RouterModule],
 })
 export class ContributionModule {

@@ -19,6 +19,7 @@ export interface ContributionState extends EntityState<Contribution> {
   };
   images: ContributionImageRes[];
   article: ArticleArticleRes;
+  termAndCondition: string;
 }
 
 @Injectable({ providedIn: 'root' })

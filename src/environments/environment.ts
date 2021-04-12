@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseApi: 'https://stage-mcm-api.devstack.cloud',
+  baseApi: 'http://localhost:3000',
 };
 
 /*
