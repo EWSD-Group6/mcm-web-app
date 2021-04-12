@@ -54,8 +54,8 @@
       I agree with <a (click)="viewTermAndCondition()">Term and Condition</a>
     </nz-form-control>
   </nz-form-item>
-  <nz-form-item class="register-area" nz-row>
-    <nz-form-control [nzOffset]="6" [nzSpan]="14">
+  <nz-form-item>
+    <nz-form-control nzXs="24" [nzLg]="{span: 14, offset: 6}">
       <button [nzLoading]="loading$ | async" type="submit" nz-button nzType="primary">Submit</button>
     </nz-form-control>
   </nz-form-item>
