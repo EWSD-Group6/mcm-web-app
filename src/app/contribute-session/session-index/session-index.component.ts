@@ -51,4 +51,8 @@ export class SessionIndexComponent implements OnInit {
   exportAsset(id): void {
     this.service.exportAsset(id).subscribe();
   }
+
+  canEditDelete(): boolean {
+    return this.authenticationService.getCurrentRole() === RoleEnum.Admin;
+  }
 }
