@@ -11,14 +11,20 @@
  */
 
 
-export interface ContributesessionSessionRes {
-  closureTime?: string;
-  createdAt?: string;
-  exportedAssets?: string;
-  exportedAssetsCdn?: string;
-  finalClosureTime?: string;
-  id?: number;
-  openTime?: string;
+export interface SystemdataDataRes {
+  key?: string;
+  type?: SystemdataDataRes.TypeEnum;
   updatedAt?: string;
+  value?: string;
 }
+
+export namespace SystemdataDataRes {
+  export type TypeEnum = 'document' | 'int' | 'string';
+  export const TypeEnum = {
+    Document: 'document' as TypeEnum,
+    Int: 'int' as TypeEnum,
+    String: 'string' as TypeEnum
+  };
+}
+
 

@@ -11,14 +11,10 @@
  */
 
 
-export interface ContributesessionSessionRes {
+export interface StatisticSession {
   closureTime?: string;
-  createdAt?: string;
-  exportedAssets?: string;
-  exportedAssetsCdn?: string;
   finalClosureTime?: string;
   id?: number;
   openTime?: string;
-  updatedAt?: string;
 }
 

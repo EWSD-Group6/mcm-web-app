@@ -1,7 +1,7 @@
 <nz-row>
   <nz-col [nzXs]="{ span: 20, offset: 2 }"
-          [nzMd]="{ span: 8, offset: 8 }"
-          [nzLg]="{ span: 4, offset: 10 }"
+          [nzLg]="{ span: 6, offset: 9 }"
+          [nzMd]="{ span: 12, offset: 6 }"
           style="height: 100vh;" nz-space nzAlign="center">
     <nz-space-item style="width: 100%;text-align: center">
       <nz-card nzTitle="Login">
@@ -9,7 +9,7 @@
           <nz-form-item>
             <nz-form-control nzErrorTip="Please input your username!" nzHasFeedback>
               <nz-input-group nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="username" placeholder="Username" />
+                <input type="text" nz-input formControlName="username" placeholder="Username"/>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -20,7 +20,9 @@
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
-          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+          <button [nzLoading]="loading$ | async" [nzType]="'primary'" class="login-form-button login-form-margin"
+                  nz-button>Log in
+          </button>
         </form>
       </nz-card>
     </nz-space-item>

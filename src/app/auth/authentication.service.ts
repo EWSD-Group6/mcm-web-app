@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {filter, finalize, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
@@ -46,6 +46,10 @@ export class AuthenticationService {
 
   setLoading(v: boolean): void {
     this.isLoading$.next(v);
+  }
+
+  getLoading(): Observable<boolean> {
+    return this.isLoading$.asObservable();
   }
 
   logout(): Promise<boolean> {

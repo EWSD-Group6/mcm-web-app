@@ -5,7 +5,7 @@ import {SessionStore} from './session.store';
 import {Observable} from 'rxjs/Observable';
 import {ContributeSessionsApiService, ContributesessionSessionCreateReq} from '../../api';
 import {SessionQuery} from './session.query';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 
 @Injectable({providedIn: 'root'})
 export class SessionService {
@@ -69,5 +69,12 @@ export class SessionService {
 
   update(id: number, value: any): Observable<any> {
     return this.api.contributeSessionsIdPut(id, value);
+  }
+
+  exportAsset(id: number): Observable<any> {
+    return this.api.contributeSessionsIdExportPost(id).pipe(
+      tap(() => this.nzNotification.success('Export assets of session',
+        `Task exporting assets for session ${id} is being processed, please wait.`))
+    );
   }
 }

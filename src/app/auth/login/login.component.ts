@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import {AuthenticationService} from '../authentication.service';
 export class LoginComponent {
 
   form: FormGroup;
+  loading$: Observable<boolean>;
 
   constructor(private fb: FormBuilder,
               private authService: AuthenticationService) {
@@ -17,6 +19,7 @@ export class LoginComponent {
       username: [null, Validators.required],
       password: [null, Validators.required]
     });
+    this.loading$ = this.authService.getLoading();
   }
 
   login(): void {

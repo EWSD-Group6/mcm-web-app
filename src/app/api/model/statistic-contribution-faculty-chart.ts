@@ -9,16 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import {StatisticSession} from './statistic-session';
+import {StatisticFacultyContributionData} from './statistic-faculty-contribution-data';
 
 
-export interface ContributesessionSessionRes {
-  closureTime?: string;
-  createdAt?: string;
-  exportedAssets?: string;
-  exportedAssetsCdn?: string;
-  finalClosureTime?: string;
-  id?: number;
-  openTime?: string;
-  updatedAt?: string;
+export interface StatisticContributionFacultyChart {
+  data?: Array<StatisticFacultyContributionData>;
+  session?: StatisticSession;
 }
 

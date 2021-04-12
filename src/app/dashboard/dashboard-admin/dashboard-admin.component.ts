@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DashboardService} from '../state/dashboard.service';
+import {Observable} from 'rxjs/Observable';
+import {StatisticAdminDashboard} from '../../api';
+import {DashboardQuery} from '../state/dashboard.query';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor() { }
+  stats$: Observable<StatisticAdminDashboard>;
+  loading$: Observable<boolean>;
+
+  constructor(private dashboardService: DashboardService,
+              private dashboardQuery: DashboardQuery) {
+    this.loading$ = this.dashboardQuery.selectLoading();
+    this.stats$ = this.dashboardQuery.select(x => x.adminStats);
+  }
 
   ngOnInit(): void {
+    this.dashboardService.loadAdminStats();
   }
 
 }

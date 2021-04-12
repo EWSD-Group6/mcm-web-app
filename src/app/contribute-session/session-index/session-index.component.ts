@@ -4,6 +4,9 @@ import {NzTableQueryParams} from 'ng-zorro-antd/table';
 import {SessionService} from '../state/session.service';
 import {SessionQuery} from '../state/session.query';
 import {Session} from '../state/session.model';
+import {AuthenticationService} from '../../auth/authentication.service';
+import {UserUserCreateReq} from '../../api';
+import RoleEnum = UserUserCreateReq.RoleEnum;
 
 @Component({
   selector: 'app-session-index',
@@ -19,7 +22,8 @@ export class SessionIndexComponent implements OnInit {
   total$: Observable<number>;
 
   constructor(private service: SessionService,
-              private query: SessionQuery) {
+              private query: SessionQuery,
+              private authenticationService: AuthenticationService) {
     this.loading$ = this.query.selectLoading();
     this.data$ = this.query.selectAll();
     this.total$ = this.query.select(x => x.paginate.total);
@@ -38,5 +42,13 @@ export class SessionIndexComponent implements OnInit {
 
   delete(id) {
     this.service.delete(id);
+  }
+
+  canExport(): boolean {
+    return this.authenticationService.getCurrentRole() === RoleEnum.MarketingManager;
+  }
+
+  exportAsset(id): void {
+    this.service.exportAsset(id).subscribe();
   }
 }

@@ -1,26 +1,16 @@
-import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
-import { Configuration } from './configuration';
-import { HttpClient } from '@angular/common/http';
-
-import { ArticlesApiService } from './api/articles.service';
-import { AuthApiService } from './api/auth.service';
-import { CommentsApiService } from './api/comments.service';
-import { ContributeSessionsApiService } from './api/contribute-sessions.service';
-import { ContributionsApiService } from './api/contributions.service';
-import { FacultiesApiService } from './api/faculties.service';
-import { StorageApiService } from './api/storage.service';
-import { SystemDataApiService } from './api/system-data.service';
-import { UsersApiService } from './api/users.service';
+import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
+import {Configuration} from './configuration';
+import {HttpClient} from '@angular/common/http';
 
 @NgModule({
-  imports:      [],
+  imports: [],
   declarations: [],
-  exports:      [],
+  exports: [],
   providers: []
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {
-        return {
+  public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {
+    return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory } ]
         };

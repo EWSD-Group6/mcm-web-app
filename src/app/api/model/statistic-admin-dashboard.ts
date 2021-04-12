@@ -11,14 +11,14 @@
  */
 
 
-export interface ContributesessionSessionRes {
-  closureTime?: string;
-  createdAt?: string;
-  exportedAssets?: string;
-  exportedAssetsCdn?: string;
-  finalClosureTime?: string;
-  id?: number;
-  openTime?: string;
-  updatedAt?: string;
+export interface StatisticAdminDashboard {
+  activeUserCount?: number;
+  disableUserCount?: number;
+  guestCount?: number;
+  marketingCoordinatorCount?: number;
+  marketingManagerCount?: number;
+  studentCount?: number;
+  totalContributeSession?: number;
+  totalContribution?: number;
 }
 

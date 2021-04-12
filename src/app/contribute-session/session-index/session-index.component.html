@@ -41,8 +41,11 @@
               nzOkText="ok"
               nzPopconfirmTitle="Are you sure?"
               (nzOnConfirm)="delete(item.id)"
-      >Delete</button>
+      >Delete
+      </button>
       <button nz-button [routerLink]="['/contribute-session', item.id, 'edit']">Edit</button>
+      <button (click)="exportAsset(item.id)" *ngIf="canExport()" nz-button>Export</button>
+      <a *ngIf="canExport() && item.exportedAssetsCdn" [href]="item.exportedAssetsCdn" nz-button>Download</a>
     </td>
   </tr>
   </tbody>

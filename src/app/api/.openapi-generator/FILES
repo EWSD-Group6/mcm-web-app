@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 README.md
 api.module.ts
 api/api.ts
@@ -8,6 +9,7 @@ api/comments.service.ts
 api/contribute-sessions.service.ts
 api/contributions.service.ts
 api/faculties.service.ts
+api/statistics.service.ts
 api/storage.service.ts
 api/system-data.service.ts
 api/users.service.ts
@@ -42,6 +44,13 @@ model/faculty-faculty-update-req.ts
 model/faculty-paginate-composition.ts
 model/media-upload-result.ts
 model/models.ts
+model/statistic-admin-dashboard.ts
+model/statistic-contribution-faculty-chart.ts
+model/statistic-contribution-student-chart.ts
+model/statistic-contribution-student-data.ts
+model/statistic-faculty-contribution-data.ts
+model/statistic-session.ts
+model/systemdata-data-res.ts
 model/systemdata-data-update-req.ts
 model/user-paginate-composition.ts
 model/user-user-create-req.ts

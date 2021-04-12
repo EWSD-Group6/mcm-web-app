@@ -11,14 +11,9 @@
  */
 
 
-export interface ContributesessionSessionRes {
-  closureTime?: string;
-  createdAt?: string;
-  exportedAssets?: string;
-  exportedAssetsCdn?: string;
-  finalClosureTime?: string;
+export interface StatisticFacultyContributionData {
+  count?: number;
   id?: number;
-  openTime?: string;
-  updatedAt?: string;
+  name?: string;
 }
 
