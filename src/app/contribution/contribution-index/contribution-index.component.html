@@ -1,16 +1,5 @@
 <form [formGroup]="filterForm" nz-form nzLayout="inline" style="margin-bottom: 10px">
-    <nz-form-item>
-      <nz-form-label>Session</nz-form-label>
-      <nz-form-control>
-        <input formControlName="contributeSessionId" nz-input placeholder="placeholder"/>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label>User</nz-form-label>
-      <nz-form-control>
-        <input formControlName="studentId" nz-input placeholder="placeholder"/>
-      </nz-form-control>
-    </nz-form-item>
+
     <nz-form-item *ngIf="canFilter()">
       <nz-form-label>Status</nz-form-label>
       <nz-form-control>

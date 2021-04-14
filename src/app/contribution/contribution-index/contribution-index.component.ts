@@ -79,6 +79,6 @@ export class ContributionIndexComponent implements OnInit {
   }
 
   clearFilter() {
-    this.data$ = this.query.selectAll();
+    this.filterForm.reset();
   }
 }
