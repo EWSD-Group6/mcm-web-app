@@ -1,0 +1,7 @@
+<ng-container [ngSwitch]="role">
+  <nz-tag [nzColor]="'red'" *ngSwitchCase="'admin'">Admin</nz-tag>
+  <nz-tag [nzColor]="'geekblue'" *ngSwitchCase="'marketing_coordinator'">Marketing Coordinator</nz-tag>
+  <nz-tag [nzColor]="'purple'" *ngSwitchCase="'marketing_manager'">Marketing Manager</nz-tag>
+  <nz-tag [nzColor]="'cyan'" *ngSwitchCase="'guest'">Guest</nz-tag>
+  <nz-tag [nzColor]="'green'" *ngSwitchCase="'student'">Student</nz-tag>
+</ng-container>

@@ -31,10 +31,12 @@
   <tr *ngFor="let item of table.data; index as i">
     <td nzLeft>{{i + 1}}</td>
     <td>{{item.id}}</td>
-    <td>{{item.facultyId}}</td>
+    <td>{{item.facultyId | faculty | async}}</td>
     <td>{{item.name}}</td>
     <td>{{item.email}}</td>
-    <td>{{item.role}}</td>
+    <td>
+      <app-role-tag [role]="item.role"></app-role-tag>
+    </td>
     <td>
       <nz-tag *ngIf="item.status == 'active'" nzColor="success">Active</nz-tag>
       <nz-tag *ngIf="item.status == 'disable'" nzColor="error">Disable</nz-tag>
@@ -42,14 +44,18 @@
     <td>{{item.createdAt | appDate}}</td>
     <td>{{item.updatedAt | appDate}}</td>
     <td>
-      <button nz-button nzType="danger"
-              nz-popconfirm
-              nzCancelText="cancel"
-              nzOkText="ok"
-              nzPopconfirmTitle="Are you sure?"
-              (nzOnConfirm)="delete(item.id)"
-      >Delete</button>
-      <button nz-button [routerLink]="['/account', item.id, 'edit']">Edit</button>
+      <button
+        [disabled]="item.role === 'admin'"
+        nz-button
+        nzDanger
+        nz-popconfirm
+        nzCancelText="cancel"
+        nzOkText="ok"
+        nzPopconfirmTitle="Are you sure?"
+        (nzOnConfirm)="delete(item.id)"
+      >Delete
+      </button>
+      <button [disabled]="item.role === 'admin'" nz-button [routerLink]="['/account', item.id, 'edit']">Edit</button>
     </td>
   </tr>
   </tbody>

@@ -8,11 +8,17 @@ import {CommentService} from '../state/comment.service';
 import {Subscription} from 'rxjs';
 import {FormControl, Validators} from '@angular/forms';
 import {formatDistanceToNow} from 'date-fns';
+import {CommentStore} from '../state/comment.store';
 
 @Component({
   selector: 'app-contribution-comment-box',
   templateUrl: './contribution-comment-box.component.html',
-  styleUrls: ['./contribution-comment-box.component.scss']
+  styleUrls: ['./contribution-comment-box.component.scss'],
+  providers: [
+    CommentQuery,
+    CommentService,
+    CommentStore,
+  ]
 })
 export class ContributionCommentBoxComponent implements OnInit, OnDestroy {
 

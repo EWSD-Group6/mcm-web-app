@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
 import { CommentStore, CommentState } from './comment.store';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class CommentQuery extends QueryEntity<CommentState> {
 
   constructor(protected store: CommentStore) {
