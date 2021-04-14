@@ -1,7 +1,11 @@
 <nz-comment *ngFor="let comment of comment$ | async"
-            [nzAuthor]="comment.user.name"
+            [nzAuthor]="ref"
             [nzDatetime]="toNow(comment.createdAt)"
 >
+  <ng-template #ref>
+    <span>{{comment.user.name}} </span>
+    <app-role-tag [role]="comment.user.role"></app-role-tag>
+  </ng-template>
   <nz-comment-content>
     <p>
      {{comment.content}}

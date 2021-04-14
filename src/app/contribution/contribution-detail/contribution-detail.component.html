@@ -4,7 +4,7 @@
       <nz-descriptions-item nzTitle="Description">{{contribution.description}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Author Name">{{contribution.user.name}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Author Email">{{contribution.user.email}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Faculty">{{contribution.user.facultyId}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Faculty">{{contribution.user.facultyId | faculty | async}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Contribute Session">{{contribution.contributeSessionId}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Create Time">{{contribution.createdAt | appDate}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Update Time">{{contribution.updatedAt | appDate}}</nz-descriptions-item>

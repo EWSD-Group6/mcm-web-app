@@ -6,7 +6,7 @@ export interface CommentState extends EntityState<Comment> {
   next?: string;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 @StoreConfig({ name: 'comment' })
 export class CommentStore extends EntityStore<CommentState> {
 

@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {finalize, map, switchMap, take, tap} from 'rxjs/operators';
-import {Faculty, createFaculty} from './faculty.model';
+import {finalize, map, mergeMap, switchMap, take, tap} from 'rxjs/operators';
+import {createFaculty, Faculty} from './faculty.model';
 import {FacultyStore} from './faculty.store';
 import {Observable} from 'rxjs/Observable';
 import {FacultiesApiService, FacultyFacultyCreateReq} from '../../api';
 import {FacultyQuery} from './faculty.query';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {iif, of} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class FacultyService {
@@ -90,8 +91,14 @@ export class FacultyService {
     });
   }
 
-  getById(id: number) : Observable<Faculty> {
-    return this.api.facultiesIdGet(id).pipe(map(x => createFaculty(x)));
+  getById(id: number): Observable<Faculty> {
+    return this.query.selectEntity(id).pipe(
+      mergeMap(x => iif(
+        () => !!x,
+        of(x),
+        this.api.facultiesIdGet(id).pipe(map(r => createFaculty(r)))
+      ))
+    );
   }
 
   delete(id: any) {
