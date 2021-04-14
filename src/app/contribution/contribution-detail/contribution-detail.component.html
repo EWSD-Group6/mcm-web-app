@@ -62,7 +62,7 @@
   </nz-col>
 </nz-row>
 <ng-template #extraTemplate>
-  <button nz-button nzType="primary" (click)="commentVisible = !commentVisible">Comments</button>
+  <button nz-button nzType="primary" (click)="commentVisible = !commentVisible" *ngIf="canComment()">Comments</button>
 </ng-template>
 
 <nz-drawer [nzClosable]="true"
@@ -71,6 +71,7 @@
            nzPlacement="right"
            nzTitle="Comments"
            (nzOnClose)="commentVisible = false"
+           *ngIf="canComment()"
 >
   <ng-container *nzDrawerContent>
     <app-contribution-comment-box></app-contribution-comment-box>
