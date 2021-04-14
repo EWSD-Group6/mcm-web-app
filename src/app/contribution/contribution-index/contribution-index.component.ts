@@ -7,6 +7,9 @@ import {ContributionService} from '../state/contribution.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
+import {UserUserCreateReq} from '../../api';
+import RoleEnum = UserUserCreateReq.RoleEnum;
+
 
 @UntilDestroy()
 @Component({
@@ -64,6 +67,18 @@ export class ContributionIndexComponent implements OnInit {
   }
 
   canEdit() {
-    return this.authenticationService.getCurrentRole() == "student";
+    return this.authenticationService.getCurrentRole() === RoleEnum.Student;
+  }
+
+  canFilter() {
+    if(this.authenticationService.getCurrentRole() === RoleEnum.Student || this.authenticationService.getCurrentRole() === RoleEnum.MarketingManager) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  clearFilter() {
+    this.data$ = this.query.selectAll();
   }
 }

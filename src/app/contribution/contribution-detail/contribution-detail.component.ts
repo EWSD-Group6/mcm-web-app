@@ -9,6 +9,9 @@ import {Subscription} from 'rxjs';
 import {ContributionQuery} from '../state/contribution.query';
 import {NzImageService} from 'ng-zorro-antd/image';
 import {ImagePipe} from '../../shared/pipes/image.pipe';
+import {AuthenticationService} from '../../auth/authentication.service';
+import {UserUserCreateReq} from '../../api';
+import RoleEnum = UserUserCreateReq.RoleEnum;
 
 @Component({
   selector: 'app-contribution-detail',
@@ -27,7 +30,8 @@ export class ContributionDetailComponent implements OnInit, OnDestroy {
               private service: ContributionService,
               private query: ContributionQuery,
               private nzImageService: NzImageService,
-              private imagePipe: ImagePipe) {
+              private imagePipe: ImagePipe,
+              private authenticationService: AuthenticationService) {
     this.sub = this.route.paramMap.pipe(
       map(x => Number(x.get('id'))),
       switchMap(id => this.service.getById(id)),
@@ -55,5 +59,13 @@ export class ContributionDetailComponent implements OnInit, OnDestroy {
       alt: image.title,
       src: this.imagePipe.transform(image.link, [1920, 0]),
     }]);
+  }
+
+  canComment(): boolean {
+    if(this.authenticationService.getCurrentRole() === RoleEnum.Student || this.authenticationService.getCurrentRole() === RoleEnum.MarketingCoordinator) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

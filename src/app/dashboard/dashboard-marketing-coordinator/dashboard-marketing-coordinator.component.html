@@ -1,1 +1,22 @@
-<p>dashboard-marketing-coordinator works!</p>
+<nz-row *ngIf="currentSession" [nzGutter]="16">
+  <nz-col [nzSpan]="12">
+    <nz-countdown [nzTitle]="'Closure Date'" [nzValue]="currentSession.closureTime"></nz-countdown>
+  </nz-col>
+  <nz-col [nzSpan]="12">
+    <nz-countdown [nzTitle]="'Final Closure Date'" [nzValue]="currentSession.finalClosureTime"></nz-countdown>
+  </nz-col>
+  <nz-col nzSpan="24">
+    <nz-calendar [formControl]="calendarControl">
+      <ul *nzDateCell="let date" class="events">
+        <li *ngIf="dateMap[date | date:'shortDate'] as data">
+          <nz-badge [nzStatus]="data.type" [nzText]="data.content"></nz-badge>
+        </li>
+      </ul>
+    </nz-calendar>
+  </nz-col>
+</nz-row>
+
+<nz-result *ngIf="isErrorNoSession" nzStatus="info"
+           nzTitle="There is no contribute session at the moment, please comeback later">
+</nz-result>
+

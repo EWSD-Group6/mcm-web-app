@@ -11,7 +11,7 @@
         <input formControlName="studentId" nz-input placeholder="placeholder"/>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item *ngIf="canFilter()">
       <nz-form-label>Status</nz-form-label>
       <nz-form-control>
         <nz-select
@@ -27,7 +27,7 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
-        <button nz-button>Clear</button>
+        <button nz-button (click)="clearFilter()">Clear</button>
       </nz-form-control>
     </nz-form-item>
 </form>

@@ -24,13 +24,13 @@ export class ContainerComponent implements OnInit {
     {
       title: 'Contribution',
       icon: 'shopping-cart',
-      roles: [RoleEnum.Student, RoleEnum.MarketingCoordinator],
+      roles: [RoleEnum.Student, RoleEnum.MarketingCoordinator, RoleEnum.MarketingManager],
       children: [
         {
           title: 'Contribution List',
           icon: 'dashboard',
           link: '/contribution/index',
-          roles: [RoleEnum.Student, RoleEnum.MarketingCoordinator]
+          roles: [RoleEnum.Student, RoleEnum.MarketingCoordinator, RoleEnum.MarketingManager]
         },
         {
           title: 'Create Contribution',
