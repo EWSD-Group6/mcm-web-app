@@ -23,7 +23,7 @@ export class ContainerComponent implements OnInit {
     },
     {
       title: 'Contribution',
-      icon: 'shopping-cart',
+      icon: 'plus-circle',
       roles: [RoleEnum.Student, RoleEnum.MarketingCoordinator, RoleEnum.MarketingManager],
       children: [
         {

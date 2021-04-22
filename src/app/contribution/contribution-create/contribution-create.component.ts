@@ -70,7 +70,7 @@ export class ContributionCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.termAndCondition$ = this.query.select(x => x.termAndCondition);
-    this.loading$ = this.query.selectLoading();
+    //this.loading$ = this.query.selectLoading();
   }
 
   buildForm(): FormGroup {
